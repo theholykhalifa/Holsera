@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import JsonLd from '@/components/JsonLd';
 import { site } from '@/lib/site.config';
 
 export const metadata: Metadata = {
@@ -71,11 +72,49 @@ export const viewport: Viewport = {
  */
 const themeScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('holsera-theme');d.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){d.setAttribute('data-theme','dark');}d.classList.add('js');})();`;
 
+/**
+ * Site-wide structured data: Organization + WebSite + founder Person.
+ * Every field here is a confirmed fact or a site URL — no invented
+ * founders, awards, addresses, or social profiles.
+ */
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${site.url}/#organization`,
+      name: site.name,
+      url: `${site.url}/`,
+      logo: `${site.url}/brand/logo-horizontal-dark.png`,
+      slogan: site.tagline,
+      description: site.description,
+      founder: { '@id': `${site.url}/founder/#person` },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.url}/#website`,
+      name: site.name,
+      url: `${site.url}/`,
+      description: site.description,
+      publisher: { '@id': `${site.url}/#organization` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${site.url}/founder/#person`,
+      name: 'Khalifa',
+      jobTitle: 'Founder & CEO',
+      worksFor: { '@id': `${site.url}/#organization` },
+      url: `${site.url}/founder/`,
+    },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <JsonLd data={siteJsonLd} />
         <a className="skip-link" href="#main">
           Skip to main content
         </a>

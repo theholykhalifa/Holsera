@@ -13,4 +13,19 @@ export const navLinks: NavLink[] = [
   { href: '/founder/', label: 'Founder' },
 ];
 
-export const allPages: NavLink[] = [...navLinks, { href: '/contact/', label: 'Contact' }];
+/** Footer "Site" column — primary pages plus contact and resources. */
+export const footerSiteLinks: NavLink[] = [
+  ...navLinks,
+  { href: '/contact/', label: 'Contact' },
+  { href: '/faq/', label: 'FAQ' },
+  { href: '/press/', label: 'Press Kit' },
+];
+
+/** Footer "Legal" column. */
+export const footerLegalLinks: NavLink[] = [
+  { href: '/privacy/', label: 'Privacy Policy' },
+  { href: '/terms/', label: 'Terms' },
+];
+
+/** Every page on the site — drives the sitemap. */
+export const allPages: NavLink[] = [...footerSiteLinks, ...footerLegalLinks];

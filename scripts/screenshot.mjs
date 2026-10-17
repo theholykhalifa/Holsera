@@ -63,6 +63,10 @@ const pages = [
   ['security-trust', '/security-trust/'],
   ['about', '/about/'],
   ['founder', '/founder/'],
+  ['faq', '/faq/'],
+  ['press', '/press/'],
+  ['privacy', '/privacy/'],
+  ['terms', '/terms/'],
   ['contact', '/contact/'],
 ];
 

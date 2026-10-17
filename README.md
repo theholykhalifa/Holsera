@@ -30,6 +30,10 @@ checklist below is completed.**
 | `/security-trust/`| Design principles, honest security posture table, explicit non-claims |
 | `/about/`         | Mission, founding-story placeholder, leadership short bio, working standards |
 | `/founder/`       | Founder profile: short + long biography, editable detail placeholders |
+| `/faq/`           | Pre-launch FAQ with FAQPage structured data                          |
+| `/press/`         | Press kit: logos, palette, boilerplate, editorial rules             |
+| `/privacy/`       | Privacy policy — states plainly that the site collects nothing      |
+| `/terms/`         | Terms of use — informational pre-launch site, no offers              |
 | `/contact/`       | Front-end demo form (no backend), placeholder contact channels      |
 | `404`             | Custom not-found page                                               |
 

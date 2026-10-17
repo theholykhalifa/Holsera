@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { asset } from '@/lib/asset';
-import { allPages } from '@/lib/nav';
+import { footerLegalLinks, footerSiteLinks } from '@/lib/nav';
 import { site } from '@/lib/site.config';
 import Placeholder from './Placeholder';
 
@@ -38,7 +38,18 @@ export default function Footer() {
           <div>
             <h4>Site</h4>
             <ul className="footer-links">
-              {allPages.map((link) => (
+              {footerSiteLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4>Legal</h4>
+            <ul className="footer-links">
+              {footerLegalLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>{link.label}</Link>
                 </li>
