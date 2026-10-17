@@ -76,7 +76,7 @@ security/about/contact × dark, home+contact × light, home × mobile 390px).
 
 | Location | What to fill |
 | --- | --- |
-| `src/lib/site.config.ts` | `url` (currently `https://holsera.example`), `contact.email/location/responseTime`, `company.legalName/founded`, `social[]` |
+| `src/lib/site.config.ts` | `url` (live GitHub Pages address; replace with a custom domain when confirmed), `contact.email/location/responseTime`, `company.legalName/founded`, `social[]` |
 | `src/lib/content.ts` | Capability/workflow/module **statuses** (confirm with team), `securityPosture` rows (audit, certifications, pen test, bug bounty, DPA), disclosure address |
 | About page | Founding story, founders/team |
 | Contact page | Real backend endpoint (only with legal + security sign-off) |
@@ -126,4 +126,7 @@ node scripts/brand-prep.mjs    # reprocess logos after changes
 node scripts/screenshot.mjs    # regenerate visual QA screenshots
 ```
 
-**Nothing has been deployed or published anywhere.**
+**Deployment status (updated 2026-10-17, post-delivery):** the site is live on
+GitHub Pages at <https://theholykhalifa.github.io/Holsera/>, auto-deployed by
+`.github/workflows/deploy.yml` on every push to `main`. (At delivery time nothing
+had been deployed yet.)

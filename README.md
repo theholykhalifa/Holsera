@@ -94,7 +94,7 @@ This site must never fabricate claims. The machinery for that:
 
 ## Pre-launch placeholder checklist
 
-- [ ] `site.url` — real production domain (currently `https://holsera.example`)
+- [x] `site.url` — set to the live GitHub Pages address (replace with a custom domain before wide promotion)
 - [ ] `site.contact.email` / `location` / `responseTime`
 - [ ] `site.company.legalName` / `founded`
 - [ ] Founding story & team (About page)
@@ -112,6 +112,21 @@ This site must never fabricate claims. The machinery for that:
 | `scripts/preview-logos.mjs`     | Brand-asset QA sheet (dark/light comparison)         |
 
 Screenshot output: `scripts/screenshots/*.png`.
+
+## Deployment (GitHub Pages)
+
+Every push to `main` triggers `.github/workflows/deploy.yml`: it builds the static
+export with `NEXT_PUBLIC_BASE_PATH=/Holsera` (project sites are served from
+`/<repo>/`) and publishes it via GitHub Actions.
+
+**Live site:** <https://theholykhalifa.github.io/Holsera/>
+
+- Local dev/builds are unaffected — the base path is only set in CI.
+- Changing the domain later: update `site.url` in `src/lib/site.config.ts`; if the
+  site ever stops living under `/Holsera/` (e.g. a custom domain at the root),
+  remove the `NEXT_PUBLIC_BASE_PATH` env var from the workflow.
+- Raw `<img>` paths into `public/` must go through `asset()` (`src/lib/asset.ts`)
+  so they receive the base path. `next/link` and metadata canonicals need nothing.
 
 ## Project structure
 
