@@ -13,10 +13,14 @@ export const site = {
   tagline: 'Trust, Engineered Into Every Transaction.',
 
   /**
-   * TODO: replace with the real production domain before launch.
-   * Used for canonical URLs, sitemap, and social sharing metadata.
+   * Production URL of the deployed site.
+   * Currently the GitHub Pages address (subpath included) — this IS a
+   * confirmed URL, derived from the repository the user pushed to.
+   * TODO: replace with the real custom domain before wide promotion,
+   * and remember to update NEXT_PUBLIC_BASE_PATH handling if the site
+   * stops living under /Holsera/ (see next.config.mjs).
    */
-  url: 'https://holsera.example',
+  url: 'https://theholykhalifa.github.io/Holsera',
 
   description:
     'Holsera is building transaction-trust infrastructure for digital commerce — secure transaction workflows, fraud-prevention signals, and escrow-style release logic, engineered for reliability.',

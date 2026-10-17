@@ -1,12 +1,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { asset } from '@/lib/asset';
 import { site } from '@/lib/site.config';
 import { LogoMark } from './LogoMark';
 
 /** Resolve a file inside public/brand/ at build time (null when absent). */
 export function brandFile(name: string): string | null {
   try {
-    return fs.existsSync(path.join(process.cwd(), 'public', 'brand', name)) ? `/brand/${name}` : null;
+    return fs.existsSync(path.join(process.cwd(), 'public', 'brand', name))
+      ? asset(`/brand/${name}`)
+      : null;
   } catch {
     return null;
   }

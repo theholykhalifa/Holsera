@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
 import Icon, { type IconName } from '@/components/Icon';
+import { asset } from '@/lib/asset';
 import { LogoLockup } from '@/components/Logo';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
@@ -62,7 +63,7 @@ export default function AboutPage() {
               <div className="card asset-card">
                 <LogoLockup width={430} />
                 <img
-                  src="/brand/logo-3d.png"
+                  src={asset('/brand/logo-3d.png')}
                   alt="Holsera three-dimensional mark"
                   width={140}
                   height={173}

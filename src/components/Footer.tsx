@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { asset } from '@/lib/asset';
 import { allPages } from '@/lib/nav';
 import { site } from '@/lib/site.config';
 import Placeholder from './Placeholder';
@@ -13,7 +14,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="brand brand--footer" aria-label="Holsera — home">
               <img
-                src="/brand/logo-mark.png"
+                src={asset('/brand/logo-mark.png')}
                 alt=""
                 width={25}
                 height={40}

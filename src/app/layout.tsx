@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     'FinTech infrastructure',
     'cybersecurity',
   ],
+  // Social preview image. Deliberately an ABSOLUTE URL pointing into
+  // public/brand/ — Next file routes (app/opengraph-image.*) get
+  // basePath auto-applied AND joined to metadataBase, which double-
+  // prefixes on GitHub Pages (/Holsera/Holsera/...). Explicit absolute
+  // URLs bypass that entirely.
   openGraph: {
     type: 'website',
     siteName: site.name,
@@ -35,14 +40,31 @@ export const metadata: Metadata = {
     description: site.description,
     url: site.url,
     locale: 'en_US',
+    images: [
+      {
+        url: `${site.url}/brand/opengraph-image.png`,
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    images: [`${site.url}/brand/opengraph-image.png`],
   },
   robots: { index: true, follow: true },
-  icons: { icon: [{ url: '/icon.png', sizes: '512x512', type: 'image/png' }] },
+  icons: {
+    icon: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/icon.png`,
+        sizes: '512x512',
+        type: 'image/png',
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
