@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
 import Icon, { type IconName } from '@/components/Icon';
 import MockupFrame from '@/components/MockupFrame';
@@ -15,6 +16,11 @@ import {
   solutionPillars,
   workflowSteps,
 } from '@/lib/content';
+
+/** Homepage inherits title/description from the root layout. */
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
 
 const problemIcons: IconName[] = ['users', 'layers', 'alert', 'clock'];
 const segmentIcons: IconName[] = ['store', 'building', 'truck', 'code'];
