@@ -11,6 +11,15 @@ import ThemeToggle from './ThemeToggle';
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Header gains a soft shadow once the page scrolls under it.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Close the mobile menu whenever navigation happens.
   useEffect(() => {
@@ -31,7 +40,7 @@ export default function Header() {
     href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
-    <header className="site-header">
+    <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
       <div className="container site-header__inner">
         <Link href="/" className="brand" aria-label="Holsera — home">
           <LogoMark height={26} />

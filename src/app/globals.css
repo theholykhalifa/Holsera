@@ -33,6 +33,8 @@
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
   --focus-ring: #6aa4ff;
   --cta-grad: linear-gradient(130deg, #071e3d 0%, #0a2c7f 58%, #0a47e7 135%);
+  --cell-hover: rgba(255, 255, 255, 0.025);
+  --header-shadow: 0 14px 32px -18px rgba(0, 0, 0, 0.55);
 
   /* Status */
   --badge-planned-fg: #9fb2cb;
@@ -62,6 +64,8 @@
   --shadow-sm: 0 1px 3px rgba(7, 30, 61, 0.08);
   --focus-ring: #0a47e7;
   --cta-grad: linear-gradient(130deg, #071e3d 0%, #0a2c7f 58%, #0a47e7 135%);
+  --cell-hover: rgba(10, 71, 231, 0.025);
+  --header-shadow: 0 14px 32px -20px rgba(7, 30, 61, 0.28);
 
   --badge-planned-fg: #46566c;
   --badge-planned-bg: rgba(70, 86, 108, 0.07);
@@ -435,13 +439,24 @@ hr {
   }
 }
 
+.rule-grid > * {
+  display: flex;
+}
+
 .rule-cell {
   background: var(--bg);
+  flex: 1;
+  width: 100%;
   padding: clamp(1.5rem, 3vw, 2.25rem);
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
   align-items: flex-start;
+  transition: background-color 0.2s ease;
+}
+
+.rule-cell:hover {
+  background: var(--cell-hover);
 }
 
 .band--soft .rule-cell {
@@ -455,6 +470,10 @@ hr {
 
 .band--deep .rule-cell {
   background: var(--navy);
+}
+
+.band--deep .rule-cell:hover {
+  background: #0a2750;
 }
 
 .rule-cell__index {
@@ -690,6 +709,12 @@ hr {
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.25s ease;
+}
+
+/* Subtle lift once the page scrolls under the bar. */
+.site-header.is-scrolled {
+  box-shadow: var(--header-shadow);
 }
 
 .site-header__inner {
@@ -707,12 +732,31 @@ hr {
 }
 
 .nav-link {
+  position: relative;
   padding: 0.4rem 0.65rem;
   border-radius: 6px;
   font-size: 0.875rem;
   font-weight: 450;
   color: var(--text-2);
   transition: color 0.16s ease;
+}
+
+/* Hairline underline that grows in on hover (Apple-style). */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: 0.1rem;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
 }
 
 .nav-link:hover {
@@ -788,6 +832,10 @@ hr {
     font-size: 1.05rem;
     border-radius: 0;
     border-bottom: 1px solid var(--line);
+  }
+
+  .nav-link::after {
+    display: none;
   }
 
   .nav-toggle {
@@ -1447,6 +1495,56 @@ hr {
 }
 
 /* ---------- 21. Motion ---------- */
+/* One-time hero entrance: eyebrow -> headline -> lead -> actions.
+   Gated behind html.js (no-JS users see content instantly) and
+   neutralised by the prefers-reduced-motion block below. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero--home .eyebrow,
+  .js .hero--home .hero__title,
+  .js .hero--home .hero__lead,
+  .js .hero--home .btn-row,
+  .js .hero--home .hero__spec,
+  .js .hero--page .eyebrow,
+  .js .hero--page h1,
+  .js .hero--page .hero__lead,
+  .js .hero--page .btn-row,
+  .js .hero--page .callout {
+    animation: rise 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .js .hero--home .eyebrow,
+  .js .hero--page .eyebrow {
+    animation-delay: 0.05s;
+  }
+  .js .hero--home .hero__title,
+  .js .hero--page h1 {
+    animation-delay: 0.12s;
+  }
+  .js .hero--home .hero__lead,
+  .js .hero--page .hero__lead {
+    animation-delay: 0.2s;
+  }
+  .js .hero--home .btn-row,
+  .js .hero--page .btn-row {
+    animation-delay: 0.28s;
+  }
+  .js .hero--home .hero__spec,
+  .js .hero--page .callout {
+    animation-delay: 0.36s;
+  }
+}
+
 .reveal {
   transition: opacity 0.65s cubic-bezier(0.22, 0.61, 0.36, 1),
     transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);

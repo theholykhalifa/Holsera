@@ -4,14 +4,22 @@
  *
  * For each PNG in public/brand/ it:
  *   1. backs up the untouched original to public/brand/originals/
- *   2. removes the flat light background -> transparent
+ *   2. removes the flat WHITE background with proper alpha matting
+ *      (unmix-from-white), which recovers true colors on anti-aliased
+ *      edges instead of leaving the white-blended fringe the old
+ *      threshold approach kept ("white cuts" on dark backgrounds)
  *   3. trims whitespace down to the artwork bounding box
  *   4. for logo-horizontal.png, also writes logo-horizontal-dark.png
  *      (white wordmark for dark backgrounds, per the official
  *       "Dark Background" logo variant in the brand guidelines)
  *   5. crops logo-3d.png down to the glass H only (drops the glow
  *      and the wordmark underneath, so it works on any background)
- *   6. writes src/app/icon.png and src/app/opengraph-image.png
+ *      and de-fringes its edges (edge-only unmix, so interior glass
+ *      highlights are preserved)
+ *   6. writes src/app/icon.png (favicon file route) and
+ *      public/brand/opengraph-image.png (referenced by absolute URL
+ *      in layout metadata — NOT a file route, because file routes get
+ *      basePath applied twice on GitHub Pages)
  *
  * Idempotent: originals are backed up once; every run restarts from
  * the untouched originals so results never degrade across runs.
@@ -35,24 +43,68 @@ async function loadRaw(file) {
   return { data, width: info.width, height: info.height };
 }
 
-/** Global background removal: flat, bright, desaturated pixels -> transparent. */
-function removeBackgroundGlobal(data) {
-  for (let i = 0; i < data.length; i += 4) {
-    const r = data[i], g = data[i + 1], b = data[i + 2];
-    const mn = Math.min(r, g, b);
-    const spread = Math.max(r, g, b) - mn;
-    if (spread < 16) {
-      if (mn >= 238) data[i + 3] = 0;
-      else if (mn >= 212) data[i + 3] = Math.round((255 * (238 - mn)) / 26);
+/**
+ * Unmix-from-white alpha matting.
+ *
+ * Every pixel of the source is a blend of the artwork with the flat
+ * white background:  observed = a * C + (1 - a) * 255.
+ * The whitest channel tells us the coverage (a = 1 - min(r,g,b)/255,
+ * exact for artwork whose darkest channel is ~0 — true for Holsera's
+ * saturated blues and navy), and the true color recovers as
+ *  C = (observed - (1 - a) * 255) / a.
+ *
+ * This yields clean, saturated anti-aliased edges with zero white
+ * halo on any background — the defect the old threshold method had.
+ *
+ * edgeOnly: only decontaminate pixels touching transparency (used for
+ * the 3D glass mark, where interior highlights must stay untouched).
+ */
+function unmixWhite(data, width, height, { edgeOnly = false } = {}) {
+  const alpha = new Float32Array(width * height);
+  for (let p = 0; p < width * height; p++) {
+    const i = p * 4;
+    const mn = Math.min(data[i], data[i + 1], data[i + 2]);
+    alpha[p] = 1 - mn / 255;
+  }
+  const nearTransparent = (p) =>
+    alpha[p] < 0.09 ||
+    (p % width > 0 && alpha[p - 1] < 0.09) ||
+    (p % width < width - 1 && alpha[p + 1] < 0.09) ||
+    (p >= width && alpha[p - width] < 0.09) ||
+    (p < width * height - width && alpha[p + width] < 0.09);
+
+  for (let p = 0; p < width * height; p++) {
+    const a = alpha[p];
+    const i = p * 4;
+    if (edgeOnly && !nearTransparent(p)) continue; // interior: keep as rendered
+    if (a < 0.09) {
+      // Below ~9% coverage the pixel is background noise, not artwork.
+      // Zero the RGB too so no processor can bleed white through it.
+      data[i] = 0;
+      data[i + 1] = 0;
+      data[i + 2] = 0;
+      data[i + 3] = 0;
+      continue;
     }
+    if (a >= 0.92) {
+      data[i + 3] = 255;
+      continue; // effectively solid artwork — leave colors untouched
+    }
+    const inv = 1 - a;
+    for (let c = 0; c < 3; c++) {
+      const v = (data[i + c] - inv * 255) / a;
+      data[i + c] = v < 0 ? 0 : v > 255 ? 255 : Math.round(v);
+    }
+    data[i + 3] = Math.round(a * 255);
   }
 }
 
 /**
- * Two-pass flood-fill background removal for the 3D mark:
- * pass 1 removes the flat background but preserves interior glass
+ * Two-pass flood-fill background removal for the 3D mark: pass 1
+ * removes the flat background but preserves interior glass
  * highlights; pass 2 continues into the soft glow under the H with a
- * relaxed predicate. Feathering softens any leftover halo.
+ * relaxed predicate. (Edge de-fringing is applied afterwards via
+ * unmixWhite in edge-only mode.)
  */
 function removeBackgroundFlood(data, width, height) {
   const test = (x, y, relaxed) => {
@@ -92,25 +144,13 @@ function removeBackgroundFlood(data, width, height) {
   flood(false);
   flood(true);
 
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const idx = y * width + x;
-      const i = idx * 4;
-      if (visited[idx]) {
-        data[i + 3] = 0;
-        continue;
-      }
-      // feather: hazy pixels hugging the removed background
-      const nearRemoved =
-        (x + 1 < width && visited[idx + 1]) ||
-        (y + 1 < height && visited[idx + width]) ||
-        (x > 0 && visited[idx - 1]) ||
-        (y > 0 && visited[idx - width]);
-      if (nearRemoved) {
-        const mn = Math.min(data[i], data[i + 1], data[i + 2]);
-        const spread = Math.max(data[i], data[i + 1], data[i + 2]) - mn;
-        if (spread < 34 && mn > 175) data[i + 3] = Math.min(data[i + 3], 70);
-      }
+  for (let i = 0; i < visited.length; i++) {
+    if (visited[i]) {
+      const j = i * 4;
+      data[j] = 0;
+      data[j + 1] = 0;
+      data[j + 2] = 0;
+      data[j + 3] = 0;
     }
   }
 }
@@ -213,7 +253,7 @@ function whitenText(data, width, height) {
   console.log(`  dark variant: mark ends at x=${runEnd}, ${recolored} px whitened`);
 }
 
-async function process(name, { mode = 'global', darkVariant = false, cropText = false } = {}) {
+async function process(name, { mode = 'unmix', darkVariant = false, cropText = false } = {}) {
   const file = path.join(BRAND_DIR, name);
   if (!fs.existsSync(file)) {
     console.log(`- ${name}: not present, skipped`);
@@ -225,8 +265,12 @@ async function process(name, { mode = 'global', darkVariant = false, cropText = 
   fs.copyFileSync(backup, file); // always start from the untouched original
 
   let { data, width, height } = await loadRaw(file);
-  if (mode === 'flood') removeBackgroundFlood(data, width, height);
-  else removeBackgroundGlobal(data);
+  if (mode === 'flood') {
+    removeBackgroundFlood(data, width, height);
+    unmixWhite(data, width, height, { edgeOnly: true }); // de-fringe edges only
+  } else {
+    unmixWhite(data, width, height);
+  }
 
   if (cropText) ({ data, width, height } = cropBelowWordmark(data, width, height));
 
@@ -279,14 +323,16 @@ async function makeOgImage() {
   const x = Math.round((1200 - w) / 2);
   const y = Math.round((630 - h) / 2);
 
+  // Palette matches the site's deep CTA band (navy -> brand blue).
   const svg = `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#050E1D"/>
-      <stop offset="100%" stop-color="#0A1B31"/>
+      <stop offset="0%" stop-color="#071E3D"/>
+      <stop offset="60%" stop-color="#0A2C7F"/>
+      <stop offset="130%" stop-color="#0A47E7"/>
     </linearGradient>
     <radialGradient id="glow" cx="0.85" cy="0.1" r="0.75">
-      <stop offset="0%" stop-color="#1A6DF4" stop-opacity="0.35"/>
+      <stop offset="0%" stop-color="#1A6DF4" stop-opacity="0.3"/>
       <stop offset="100%" stop-color="#1A6DF4" stop-opacity="0"/>
     </radialGradient>
   </defs>
@@ -300,13 +346,13 @@ async function makeOgImage() {
   <image href="data:image/png;base64,${b64}" x="${x}" y="${y}" width="${w}" height="${h}"/>
 </svg>`;
 
-  await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(path.join(APP_DIR, 'opengraph-image.png'));
-  console.log(`- src/app/opengraph-image.png: 1200x630`);
+  await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(path.join(BRAND_DIR, 'opengraph-image.png'));
+  console.log(`- public/brand/opengraph-image.png: 1200x630`);
 }
 
 console.log('Brand prep:');
-await process('logo-mark.png', { mode: 'global' });
-await process('logo-horizontal.png', { mode: 'global', darkVariant: true });
+await process('logo-mark.png', { mode: 'unmix' });
+await process('logo-horizontal.png', { mode: 'unmix', darkVariant: true });
 await process('logo-3d.png', { mode: 'flood', cropText: true });
 await makeIcon();
 await makeOgImage();

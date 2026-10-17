@@ -59,7 +59,7 @@ export default function AboutPage() {
                 src={asset('/brand/logo-3d.png')}
                 alt="Holsera three-dimensional mark"
                 width={140}
-                height={173}
+                height={185}
                 className="asset-3d"
                 decoding="async"
               />
