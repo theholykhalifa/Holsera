@@ -1666,7 +1666,7 @@ hr {
   gap: 0.5rem;
 }
 
-/* Brand asset showcase (About) */
+/* Brand asset showcase (About) + founder profile card */
 .asset-card {
   display: grid;
   place-items: center;
@@ -1675,6 +1675,51 @@ hr {
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--bg-soft);
+}
+
+/* Typographic monogram — honest stand-in until a photo exists. */
+.monogram {
+  width: 148px;
+  aspect-ratio: 1;
+  border-radius: 20px;
+  background: var(--cta-grad);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 4.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  box-shadow: var(--shadow-lg);
+  user-select: none;
+}
+
+/* Vision pull-quote (inverted band) */
+.pull-quote {
+  color: #ffffff;
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.25;
+  max-width: 24ch;
+  margin: 0 auto 1.5rem;
+  text-wrap: balance;
+}
+
+/* Long-form biography reading column */
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--text-2);
+  max-width: 68ch;
+}
+
+.prose p {
+  margin: 0 0 1.25em;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
 }
 
 .asset-card .mockup__caption {

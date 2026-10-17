@@ -62,6 +62,7 @@ const pages = [
   ['solutions', '/solutions/'],
   ['security-trust', '/security-trust/'],
   ['about', '/about/'],
+  ['founder', '/founder/'],
   ['contact', '/contact/'],
 ];
 

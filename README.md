@@ -28,7 +28,8 @@ checklist below is completed.**
 | `/how-it-works/`  | Five-stage workflow, transaction states table, record explanation   |
 | `/solutions/`     | Target customer segments — challenges & intended approach           |
 | `/security-trust/`| Design principles, honest security posture table, explicit non-claims |
-| `/about/`         | Mission, founding-story placeholder, working standards              |
+| `/about/`         | Mission, founding-story placeholder, leadership short bio, working standards |
+| `/founder/`       | Founder profile: short + long biography, editable detail placeholders |
 | `/contact/`       | Front-end demo form (no backend), placeholder contact channels      |
 | `404`             | Custom not-found page                                               |
 

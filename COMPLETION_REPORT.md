@@ -11,7 +11,7 @@
 | Check                              | Result                                             |
 | ---------------------------------- | -------------------------------------------------- |
 | `npm run build` (Next.js 15.5.28)  | ✅ Passes — compile, type-check, static export      |
-| Static export (`out/`)             | ✅ 14 routes: 7 pages, 404, icon, OG image, robots, sitemap |
+| Static export (`out/`)             | ✅ 12 routes: 8 pages (incl. `/founder/`), 404, icon, robots, sitemap |
 | First Load JS per page             | ✅ ~103–107 kB shared (optimized)                   |
 | Console errors (browser probe)     | ✅ 0 on light + dark                               |
 | Fonts                              | ✅ Montserrat self-hosted (5 woff2, no external requests) |

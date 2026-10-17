@@ -10,6 +10,7 @@ export const navLinks: NavLink[] = [
   { href: '/solutions/', label: 'Solutions' },
   { href: '/security-trust/', label: 'Security & Trust' },
   { href: '/about/', label: 'About' },
+  { href: '/founder/', label: 'Founder' },
 ];
 
 export const allPages: NavLink[] = [...navLinks, { href: '/contact/', label: 'Contact' }];

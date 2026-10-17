@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import CtaBand from '@/components/CtaBand';
+import Icon from '@/components/Icon';
 import { asset } from '@/lib/asset';
 import { LogoLockup } from '@/components/Logo';
 import Reveal from '@/components/Reveal';
@@ -105,7 +107,44 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="band" id="values" aria-labelledby="values-h">
+      {/* ---------- Leadership: founder short profile ---------- */}
+      <section className="band" aria-labelledby="leadership">
+        <div className="container">
+          <div className="editorial">
+            <Reveal className="editorial__side">
+              <SectionHeading
+                id="leadership"
+                eyebrow="Leadership"
+                title="Khalifa — Founder &amp; CEO"
+              />
+              <Link href="/founder/" className="arrow-link">
+                Read the full founder profile
+                <Icon name="arrow-right" size={15} />
+              </Link>
+            </Reveal>
+            <Reveal>
+              <div className="prose">
+                <p>
+                  <strong style={{ color: 'var(--text)' }}>Khalifa</strong> is the
+                  founder and CEO of Holsera, driven by a vision to redefine digital
+                  trust through cybersecurity and secure transaction technology.
+                </p>
+                <p>
+                  Focused on bridging the gap between digital convenience and security,
+                  he leads Holsera&apos;s mission to make online transactions safer,
+                  more transparent, and more reliable through integrated
+                  cybersecurity, escrow solutions, and fraud prevention.
+                </p>
+                <p>
+                  His vision is simple: build technology people can trust.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="band band--soft" id="values" aria-labelledby="values-h">
         <div className="container">
           <Reveal>
             <SectionHeading
