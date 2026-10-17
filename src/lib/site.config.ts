@@ -42,7 +42,9 @@ export const site = {
   },
 
   company: {
-    legalName: '[legal entity name — to be confirmed]',
+    /** Confirmed by the founder: the company trades as "Holsera".
+     *  Update here if a distinct registered legal name is published later. */
+    legalName: 'Holsera',
     founded: '[founding year — to be confirmed]',
   },
 

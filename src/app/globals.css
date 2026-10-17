@@ -1679,6 +1679,8 @@ hr {
 
 /* Typographic monogram — honest stand-in until a photo exists. */
 .monogram {
+  position: relative;
+  overflow: hidden;
   width: 148px;
   aspect-ratio: 1;
   border-radius: 20px;
@@ -1692,6 +1694,50 @@ hr {
   line-height: 1;
   box-shadow: var(--shadow-lg);
   user-select: none;
+}
+
+/* Subtle glass-tile life: a slow float with a periodic light sweep.
+   Both are neutralised by the global prefers-reduced-motion block. */
+@keyframes monogram-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes monogram-sheen {
+  0%,
+  58% {
+    transform: translateX(-130%);
+  }
+  88%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .monogram {
+    animation: monogram-float 6s ease-in-out infinite;
+  }
+
+  .monogram::before {
+    content: '';
+    position: absolute;
+    inset: -40%;
+    background: linear-gradient(
+      115deg,
+      transparent 42%,
+      rgba(255, 255, 255, 0.22) 50%,
+      transparent 58%
+    );
+    transform: translateX(-130%);
+    animation: monogram-sheen 6s ease-in-out infinite;
+    pointer-events: none;
+  }
 }
 
 /* Vision pull-quote (inverted band) */

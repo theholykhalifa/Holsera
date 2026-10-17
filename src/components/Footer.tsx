@@ -73,7 +73,7 @@ export default function Footer() {
 
         <div className="site-footer__bottom">
           <span>
-            © {year} <Placeholder>{site.company.legalName}</Placeholder>. All rights reserved.
+            © {year} {site.company.legalName}. All rights reserved.
           </span>
           <span>
             Pre-launch site — capabilities shown as “Planned” are design targets, not live

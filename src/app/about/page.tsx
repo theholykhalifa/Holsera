@@ -166,11 +166,8 @@ export default function AboutPage() {
           </div>
 
           <div className="callout" style={{ marginTop: '2rem' }}>
-            <strong>Company details are placeholders for now.</strong> Legal entity:{' '}
-            <span className="ph" title="Placeholder — replace with confirmed details before launch">
-              {site.company.legalName}
-            </span>{' '}
-            · Location:{' '}
+            <strong>Company details.</strong> Legal entity: {site.company.legalName} ·
+            Location:{' '}
             <span className="ph" title="Placeholder — replace with confirmed details before launch">
               {site.contact.location}
             </span>
