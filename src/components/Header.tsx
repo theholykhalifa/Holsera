@@ -34,11 +34,8 @@ export default function Header() {
     <header className="site-header">
       <div className="container site-header__inner">
         <Link href="/" className="brand" aria-label="Holsera — home">
-          <LogoMark height={30} />
-          <span className="brand__text">
-            <span className="brand__name">HOLSERA</span>
-            <span className="brand__tag">Trust, Engineered Into Every Transaction</span>
-          </span>
+          <LogoMark height={26} />
+          <span className="brand__name">HOLSERA</span>
         </Link>
 
         <nav

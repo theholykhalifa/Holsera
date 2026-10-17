@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
-import Icon, { type IconName } from '@/components/Icon';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
 import StatusBadge from '@/components/StatusBadge';
@@ -13,14 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/security-trust/' },
 };
 
-const principleIcons: IconName[] = [
-  'lock',
-  'shield',
-  'eye',
-  'database',
-  'users',
-  'workflow',
-];
+const pad = (i: number) => String(i + 1).padStart(2, '0');
 
 const notClaimed = [
   'Certifications (SOC 2, ISO 27001, or any other) — none claimed',
@@ -42,13 +34,13 @@ export default function SecurityPage() {
             design, the posture we can honestly describe today, and the claims we are
             deliberately not making.
           </p>
-          <div className="callout" style={{ marginTop: '1.5rem', maxWidth: '70ch' }}>
+          <div className="callout" style={{ marginTop: '2rem', maxWidth: '70ch' }}>
             <strong>Our standing rule.</strong> {noClaimsNote}
           </div>
         </div>
       </section>
 
-      <section className="section section--tight" aria-labelledby="principles">
+      <section className="band band--tight" aria-labelledby="principles">
         <div className="container">
           <Reveal>
             <SectionHeading
@@ -58,13 +50,11 @@ export default function SecurityPage() {
               lead="These are design requirements for the system being built — not descriptions of certified practice."
             />
           </Reveal>
-          <div className="grid grid--3">
+          <div className="rule-grid rule-grid--3">
             {securityPrinciples.map((p, i) => (
               <Reveal key={p.title} delay={(i % 3) * 60}>
-                <article className="card">
-                  <span className="card__icon">
-                    <Icon name={principleIcons[i]} />
-                  </span>
+                <article className="rule-cell">
+                  <span className="rule-cell__index">{pad(i)}</span>
                   <h3>{p.title}</h3>
                   <p>{p.text}</p>
                 </article>
@@ -74,7 +64,7 @@ export default function SecurityPage() {
         </div>
       </section>
 
-      <section className="section section--soft" aria-labelledby="posture">
+      <section className="band band--soft" aria-labelledby="posture">
         <div className="container">
           <Reveal>
             <SectionHeading
@@ -111,7 +101,7 @@ export default function SecurityPage() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="not-claimed">
+      <section className="band" aria-labelledby="not-claimed">
         <div className="container container--narrow">
           <Reveal>
             <SectionHeading

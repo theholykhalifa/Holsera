@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
-import Icon, { type IconName } from '@/components/Icon';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
 import { segments } from '@/lib/content';
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/solutions/' },
 };
 
-const segmentIcons: IconName[] = ['store', 'building', 'truck', 'code'];
+const pad = (i: number) => String(i + 1).padStart(2, '0');
 
 export default function SolutionsPage() {
   return (
@@ -29,7 +28,7 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      <section className="section section--tight" aria-labelledby="segments">
+      <section className="band band--tight" aria-labelledby="segments">
         <div className="container">
           <SectionHeading
             id="segments"
@@ -37,44 +36,45 @@ export default function SolutionsPage() {
             title="Where Holsera fits"
             lead="Every “approach” item below describes intended functionality for a product still in development."
           />
-          <div className="grid grid--2">
+          <div className="list-rows">
             {segments.map((seg, i) => (
-              <Reveal key={seg.title} delay={(i % 2) * 70}>
-                <article className="card" style={{ height: '100%' }}>
-                  <span className="card__icon">
-                    <Icon name={segmentIcons[i]} />
-                  </span>
-                  <div className="flex-between" style={{ marginBottom: '0.5rem' }}>
-                    <h3 style={{ margin: 0 }}>{seg.title}</h3>
+              <Reveal key={seg.title} delay={i * 60}>
+                <div className="list-row">
+                  <span className="list-row__index">{pad(i)}</span>
+                  <div className="list-row__head">
+                    <h3>{seg.title}</h3>
                     <span className="badge badge--planned">Planned</span>
                   </div>
                   <p>{seg.summary}</p>
-
-                  <div style={{ marginTop: '1.25rem' }}>
-                    <span className="mono-label">Challenges</span>
-                    <div className="tag-list" style={{ marginTop: '0.6rem' }}>
-                      {seg.challenges.map((c) => (
-                        <span className="tag" key={c}>
-                          {c}
-                        </span>
-                      ))}
+                  <div
+                    className="grid grid--2"
+                    style={{ marginTop: '0.75rem', gap: '2rem' }}
+                  >
+                    <div>
+                      <span className="mono-label">Challenges</span>
+                      <div className="tag-list" style={{ marginTop: '0.75rem' }}>
+                        {seg.challenges.map((c) => (
+                          <span className="tag" key={c}>
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <span className="mono-label">Our approach</span>
+                      <ul className="ticks" style={{ marginTop: '0.75rem' }}>
+                        {seg.approach.map((a) => (
+                          <li key={a}>{a}</li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-
-                  <div style={{ marginTop: '1.25rem' }}>
-                    <span className="mono-label">Our approach</span>
-                    <ul className="ticks" style={{ marginTop: '0.6rem' }}>
-                      {seg.approach.map((a) => (
-                        <li key={a}>{a}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
+                </div>
               </Reveal>
             ))}
           </div>
 
-          <div className="callout" style={{ marginTop: '2rem' }}>
+          <div className="callout" style={{ marginTop: '2.5rem' }}>
             <strong>No invented social proof.</strong> This site publishes no customer
             logos, testimonials, metrics, or case studies. Customer-story pages will be
             added only when real, attributable material exists.

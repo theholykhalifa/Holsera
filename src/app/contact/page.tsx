@@ -27,34 +27,48 @@ export default function ContactPage() {
           <span className="eyebrow">Contact</span>
           <h1>Tell us where trust breaks in your transactions</h1>
           <p className="lead hero__lead">
-            Holsera is pre-launch. The most useful thing you can send is a concrete picture
-            of how your transaction workflows fail today — we will share honestly what is
-            built, what is planned, and what is still unconfirmed.
+            Holsera is pre-launch. The most useful thing you can send is a concrete
+            picture of how your transaction workflows fail today — we will share honestly
+            what is built, what is planned, and what is still unconfirmed.
           </p>
         </div>
       </section>
 
-      <section className="section section--tight" aria-labelledby="contact-form">
+      <section className="band band--tight" aria-labelledby="contact-form">
         <div className="container">
-          <div className="split" style={{ alignItems: 'start' }}>
-            <Reveal>
+          <div className="editorial">
+            <Reveal className="editorial__side">
               <SectionHeading
                 id="contact-form"
                 eyebrow="Send a message"
                 title="Reach the team"
                 lead="Front-end demo form — it validates locally and transmits nothing."
               />
-              <ContactForm />
+              <div className="callout" style={{ marginTop: '1.5rem' }}>
+                <strong>Do not send sensitive data.</strong> No financial, identity, or
+                account documents should be shared through this form — it has no backend
+                and no data-processing authorisation yet.
+              </div>
             </Reveal>
 
             <Reveal className="stack">
-              <div className="card">
-                <h3>Direct channels</h3>
-                <ul className="footer-links" style={{ marginTop: '1rem', gap: '0.9rem' }}>
+              <ContactForm />
+
+              <div className="list-rows">
+                <div className="list-row" style={{ borderTop: 0, paddingTop: '1rem' }}>
+                  <span className="mono-label">Direct channels</span>
                   {channels.map((ch) => (
-                    <li key={ch.label} style={{ display: 'flex', gap: '0.7rem', alignItems: 'flex-start' }}>
+                    <div
+                      key={ch.label}
+                      style={{
+                        display: 'flex',
+                        gap: '0.75rem',
+                        alignItems: 'flex-start',
+                        marginTop: '0.75rem',
+                      }}
+                    >
                       <span style={{ color: 'var(--accent)', marginTop: 2 }}>
-                        <Icon name={ch.icon} size={17} />
+                        <Icon name={ch.icon} size={16} />
                       </span>
                       <span>
                         <span className="mono-label" style={{ display: 'block' }}>
@@ -62,27 +76,20 @@ export default function ContactPage() {
                         </span>
                         <Placeholder>{ch.value}</Placeholder>
                       </span>
-                    </li>
+                    </div>
                   ))}
-                </ul>
-              </div>
-
-              <div className="callout">
-                <strong>Do not send sensitive data.</strong> No financial, identity, or
-                account documents should be shared through this form — it has no backend and
-                no data-processing authorisation yet.
-              </div>
-
-              <div className="card">
-                <h3>Security disclosure</h3>
-                <p>
-                  To report a vulnerability, choose <strong>“Security disclosure”</strong>{' '}
-                  in the topic selector. A dedicated disclosure channel is{' '}
-                  <span className="ph" title="Placeholder — replace with confirmed details before launch">
-                    [planned before launch]
-                  </span>
-                  .
-                </p>
+                </div>
+                <div className="list-row">
+                  <span className="mono-label">Security disclosure</span>
+                  <p>
+                    To report a vulnerability, choose <strong>“Security disclosure”</strong>{' '}
+                    in the topic selector. A dedicated disclosure channel is{' '}
+                    <span className="ph" title="Placeholder — replace with confirmed details before launch">
+                      [planned before launch]
+                    </span>
+                    .
+                  </p>
+                </div>
               </div>
             </Reveal>
           </div>

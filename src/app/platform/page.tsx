@@ -15,24 +15,18 @@ export const metadata: Metadata = {
   alternates: { canonical: '/platform/' },
 };
 
+const pad = (i: number) => String(i + 1).padStart(2, '0');
+
 function ArchitectureConcept() {
   const box = {
-    fill: 'var(--surface-2)',
-    stroke: 'var(--border-strong)',
+    fill: 'var(--bg)',
+    stroke: 'var(--line-strong)',
     strokeWidth: 1.2,
   } as const;
 
   return (
     <div className="mockup">
       <div className="mockup__frame">
-        <div className="mockup__bar" aria-hidden="true">
-          <span className="mockup__dots">
-            <i />
-            <i />
-            <i />
-          </span>
-          <span className="mockup__title">System context — concept</span>
-        </div>
         <div className="mockup__body">
           <svg
             viewBox="0 0 780 320"
@@ -42,7 +36,7 @@ function ArchitectureConcept() {
             style={{ display: 'block' }}
           >
             {/* Your product */}
-            <rect x="24" y="110" width="170" height="100" rx="12" style={box} />
+            <rect x="24" y="110" width="170" height="100" rx="10" style={box} />
             <text x="109" y="152" textAnchor="middle" fontSize="15" fontWeight="600" style={{ fill: 'var(--text)' }}>
               Your product
             </text>
@@ -60,25 +54,25 @@ function ArchitectureConcept() {
             </defs>
 
             {/* Holsera layer */}
-            <rect x="254" y="48" width="286" height="224" rx="14" fill="rgba(26,109,244,0.07)" stroke="var(--accent)" strokeWidth="1.4" />
-            <text x="397" y="80" textAnchor="middle" fontSize="15" fontWeight="700" style={{ fill: 'var(--text)' }}>
+            <rect x="254" y="48" width="286" height="224" rx="12" fill="rgba(26,109,244,0.06)" stroke="var(--accent)" strokeWidth="1.4" />
+            <text x="397" y="80" textAnchor="middle" fontSize="15" fontWeight="600" style={{ fill: 'var(--text)' }}>
               Holsera trust layer
             </text>
-            <rect x="278" y="98" width="238" height="46" rx="9" style={box} />
+            <rect x="278" y="98" width="238" height="46" rx="8" style={box} />
             <text x="397" y="126" textAnchor="middle" fontSize="13" style={{ fill: 'var(--text-2)' }}>
               Workflow engine
             </text>
-            <rect x="278" y="154" width="238" height="46" rx="9" style={box} />
+            <rect x="278" y="154" width="238" height="46" rx="8" style={box} />
             <text x="397" y="182" textAnchor="middle" fontSize="13" style={{ fill: 'var(--text-2)' }}>
               Evidence &amp; audit trail
             </text>
-            <rect x="278" y="210" width="238" height="46" rx="9" style={box} />
+            <rect x="278" y="210" width="238" height="46" rx="8" style={box} />
             <text x="397" y="238" textAnchor="middle" fontSize="13" style={{ fill: 'var(--text-2)' }}>
               Fraud signals
             </text>
 
             {/* Providers */}
-            <rect x="598" y="48" width="158" height="224" rx="14" fill="var(--surface-2)" stroke="var(--border-strong)" strokeWidth="1.2" strokeDasharray="6 5" />
+            <rect x="598" y="48" width="158" height="224" rx="12" fill="var(--bg-soft)" stroke="var(--line-strong)" strokeWidth="1.2" strokeDasharray="6 5" />
             <text x="677" y="80" textAnchor="middle" fontSize="13" fontWeight="600" style={{ fill: 'var(--text-2)' }}>
               Connected providers
             </text>
@@ -107,76 +101,76 @@ export default function PlatformPage() {
     <>
       <section className="hero hero--page">
         <div className="container">
-          <div className="split">
-            <div>
-              <span className="eyebrow">Platform</span>
-              <h1>Composable building blocks for transaction trust</h1>
-              <p className="lead hero__lead">
-                Holsera is designed as layers: a workflow engine that carries every
-                transaction through explicit states, a trust layer that keeps evidence and
-                reasons, fraud signals that explain themselves, and release logic that only
-                moves when conditions are met.
-              </p>
-              <div className="btn-row">
-                <Link href="/how-it-works/" className="btn btn--primary">
-                  See the workflow
-                  <Icon name="arrow-right" size={17} />
-                </Link>
-                <Link href="/security-trust/" className="btn btn--secondary">
-                  Security &amp; trust
-                </Link>
+          <span className="eyebrow">Platform</span>
+          <h1>Composable building blocks for transaction trust</h1>
+          <p className="lead hero__lead">
+            Holsera is designed as layers: a workflow engine that carries every
+            transaction through explicit states, a trust layer that keeps evidence and
+            reasons, fraud signals that explain themselves, and release logic that only
+            moves when conditions are met.
+          </p>
+          <div className="btn-row">
+            <Link href="/how-it-works/" className="btn btn--primary">
+              See the workflow
+              <Icon name="arrow-right" size={17} />
+            </Link>
+            <Link href="/security-trust/" className="btn btn--secondary">
+              Security &amp; trust
+            </Link>
+          </div>
+        </div>
+        <div className="container hero__visual">
+          <Reveal>
+            <MockupFrame>
+              <div className="flex-between" style={{ marginBottom: '1rem' }}>
+                <span className="mono-label">Review queue</span>
+                <span className="ui-chip ui-chip--wait">Mock data</span>
               </div>
-            </div>
+              <div className="ui-row">
+                <span className="ui-row__label">
+                  <span className="ui-id">TX-0042</span>
+                  <span className="ui-meta">Condition pending</span>
+                </span>
+                <span className="ui-chip ui-chip--wait">Hold</span>
+              </div>
+              <div className="ui-row">
+                <span className="ui-row__label">
+                  <span className="ui-id">TX-0043</span>
+                  <span className="ui-meta">Signal flagged · reason attached</span>
+                </span>
+                <span className="ui-chip">Review</span>
+              </div>
+              <div className="ui-row">
+                <span className="ui-row__label">
+                  <span className="ui-id">TX-0044</span>
+                  <span className="ui-meta">Conditions satisfied</span>
+                </span>
+                <span className="ui-chip ui-chip--done">Release ready</span>
+              </div>
+            </MockupFrame>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="band band--tight" aria-labelledby="architecture">
+        <div className="container">
+          <div className="editorial">
+            <Reveal className="editorial__side">
+              <SectionHeading
+                id="architecture"
+                eyebrow="Architecture"
+                title="Your product stays yours — the trust layer sits in the middle"
+                lead="Holsera is designed to embed into existing products through a planned API surface, while keeping the workflow record in one inspectable place."
+              />
+            </Reveal>
             <Reveal>
-              <MockupFrame title="Operations console — mockup">
-                <div className="flex-between" style={{ marginBottom: '0.9rem' }}>
-                  <span className="mono-label">Review queue</span>
-                  <span className="ui-chip ui-chip--wait">Mock data</span>
-                </div>
-                <div className="ui-row">
-                  <span className="ui-row__label">
-                    <span className="ui-id">TX-0042</span>
-                    <span className="ui-meta">Condition pending</span>
-                  </span>
-                  <span className="ui-chip ui-chip--wait">Hold</span>
-                </div>
-                <div className="ui-row">
-                  <span className="ui-row__label">
-                    <span className="ui-id">TX-0043</span>
-                    <span className="ui-meta">Signal flagged · reason attached</span>
-                  </span>
-                  <span className="ui-chip">Review</span>
-                </div>
-                <div className="ui-row">
-                  <span className="ui-row__label">
-                    <span className="ui-id">TX-0044</span>
-                    <span className="ui-meta">Conditions satisfied</span>
-                  </span>
-                  <span className="ui-chip ui-chip--done">Release ready</span>
-                </div>
-              </MockupFrame>
+              <ArchitectureConcept />
             </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="section section--tight" aria-labelledby="architecture">
-        <div className="container">
-          <Reveal>
-            <SectionHeading
-              id="architecture"
-              eyebrow="Architecture"
-              title="Your product stays yours — the trust layer sits in the middle"
-              lead="Holsera is designed to embed into existing products through a planned API surface, while keeping the workflow record in one inspectable place."
-            />
-          </Reveal>
-          <Reveal>
-            <ArchitectureConcept />
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section section--soft" aria-labelledby="blocks">
+      <section className="band band--soft" aria-labelledby="blocks">
         <div className="container">
           <Reveal>
             <SectionHeading
@@ -186,16 +180,17 @@ export default function PlatformPage() {
               lead="Each module has a clear scope and an explicit development status."
             />
           </Reveal>
-          <div className="grid grid--3">
+          <div className="rule-grid rule-grid--3">
             {platformModules.map((mod, i) => (
               <Reveal key={mod.title} delay={(i % 3) * 60}>
-                <article className="card">
-                  <div className="flex-between" style={{ marginBottom: '0.5rem' }}>
-                    <h3 style={{ margin: 0 }}>{mod.title}</h3>
+                <article className="rule-cell">
+                  <span className="rule-cell__index">{pad(i)}</span>
+                  <div className="rule-cell__head">
+                    <h3>{mod.title}</h3>
                     <StatusBadge status={mod.status} />
                   </div>
                   <p>{mod.text}</p>
-                  <ul className="ticks" style={{ marginTop: '1rem' }}>
+                  <ul className="ticks" style={{ marginTop: '0.5rem' }}>
                     {mod.points.map((p) => (
                       <li key={p}>{p}</li>
                     ))}
@@ -205,9 +200,9 @@ export default function PlatformPage() {
             ))}
           </div>
           <div className="callout" style={{ marginTop: '2rem' }}>
-            <strong>No live interfaces.</strong> This website exposes no APIs, sandboxes, or
-            dashboards. Anything shown in an interface frame is a labelled mockup of the
-            intended product.
+            <strong>No live interfaces.</strong> This website exposes no APIs, sandboxes,
+            or dashboards. Anything shown in an interface frame is a labelled mockup of
+            the intended product.
           </div>
         </div>
       </section>

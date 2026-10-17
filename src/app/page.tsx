@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
-import Icon, { type IconName } from '@/components/Icon';
+import Icon from '@/components/Icon';
 import MockupFrame from '@/components/MockupFrame';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
@@ -22,76 +22,71 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-const problemIcons: IconName[] = ['users', 'layers', 'alert', 'clock'];
-const segmentIcons: IconName[] = ['store', 'building', 'truck', 'code'];
+const pad = (i: number) => String(i + 1).padStart(2, '0');
 
 export default function HomePage() {
   return (
     <>
-      {/* ---------- Hero: purpose ---------- */}
-      <section className="hero">
+      {/* ---------- Hero: statement ---------- */}
+      <section className="hero hero--home">
         <div className="container">
-          <div className="split">
-            <div>
-              <span className="eyebrow">Transaction trust infrastructure</span>
-              <h1 className="hero__title">
-                Trust, <span className="accent">Engineered</span> Into Every Transaction.
-              </h1>
-              <p className="lead hero__lead">
-                Holsera is building the trust layer for digital commerce: structured
-                transaction workflows, fraud-prevention signals, and escrow-style release
-                logic — so counterparties can move forward on evidence, not assumption.
-              </p>
-              <div className="btn-row">
-                <Link href="/platform/" className="btn btn--primary">
-                  Explore the platform
-                  <Icon name="arrow-right" size={17} />
-                </Link>
-                <Link href="/how-it-works/" className="btn btn--secondary">
-                  How it works
-                </Link>
-              </div>
-              <div className="hero__meta">
-                <span>Secure transaction workflows</span>
-                <span>Fraud-prevention signals</span>
-                <span>Escrow-style release logic</span>
-              </div>
-            </div>
-
-            <Reveal className="hero__visual">
-              <MockupFrame title="Transaction workflow — mockup">
-                <div className="flex-between" style={{ marginBottom: '0.9rem' }}>
-                  <span className="ui-id">
-                    {mockupTx.id} · {mockupTx.caption}
-                  </span>
-                  <span className="ui-chip ui-chip--wait">Illustrative</span>
-                </div>
-                {mockupTx.rows.map((row) => (
-                  <div className="ui-row" key={row.label}>
-                    <span className="ui-row__label">{row.label}</span>
-                    <span className={`ui-chip${row.tone === 'done' ? ' ui-chip--done' : ''}`}>
-                      {row.chip}
-                    </span>
-                  </div>
-                ))}
-                <div style={{ marginTop: '1rem' }}>
-                  <span className="mono-label">Audit trail</span>
-                  <div className="ui-row" style={{ marginTop: '0.5rem', display: 'block' }}>
-                    {mockupTx.trail.map((line) => (
-                      <div className="ui-meta" key={line} style={{ lineHeight: 1.7 }}>
-                        {line}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </MockupFrame>
-            </Reveal>
+          <span className="eyebrow">Transaction trust infrastructure</span>
+          <h1 className="hero__title">Trust, engineered into every transaction.</h1>
+          <p className="lead hero__lead">
+            Holsera is building the trust layer for digital commerce: structured
+            transaction workflows, fraud-prevention signals, and escrow-style release
+            logic — so counterparties can move forward on evidence, not assumption.
+          </p>
+          <div className="btn-row btn-row--center">
+            <Link href="/platform/" className="btn btn--primary">
+              Explore the platform
+              <Icon name="arrow-right" size={17} />
+            </Link>
+            <Link href="/how-it-works/" className="btn btn--secondary">
+              How it works
+            </Link>
           </div>
+          <div className="hero__spec">
+            <span>Secure workflows</span>
+            <span>Fraud signals</span>
+            <span>Release logic</span>
+          </div>
+        </div>
+
+        <div className="container container--wide hero__visual">
+          <Reveal>
+            <MockupFrame>
+              <div className="flex-between" style={{ marginBottom: '1rem' }}>
+                <span className="ui-id">
+                  {mockupTx.id} · {mockupTx.caption}
+                </span>
+                <span className="ui-chip ui-chip--wait">Illustrative</span>
+              </div>
+              {mockupTx.rows.map((row) => (
+                <div className="ui-row" key={row.label}>
+                  <span className="ui-row__label">{row.label}</span>
+                  <span className={`ui-chip${row.tone === 'done' ? ' ui-chip--done' : ''}`}>
+                    {row.chip}
+                  </span>
+                </div>
+              ))}
+              <div style={{ marginTop: '1.25rem' }}>
+                <span className="mono-label">Audit trail</span>
+                <div style={{ marginTop: '0.5rem' }}>
+                  {mockupTx.trail.map((line) => (
+                    <div className="ui-meta" key={line}>
+                      {line}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </MockupFrame>
+          </Reveal>
         </div>
       </section>
 
-      {/* ---------- The problem ---------- */}
-      <section className="section section--soft" aria-labelledby="problem">
+      {/* ---------- The problem: inverted band ---------- */}
+      <section className="band band--deep" aria-labelledby="problem">
         <div className="container">
           <Reveal>
             <SectionHeading
@@ -101,13 +96,11 @@ export default function HomePage() {
               lead="Two parties agree on a transaction — then the record scatters across inboxes, chats, and tools. When something goes wrong, nobody can reconstruct what happened."
             />
           </Reveal>
-          <div className="grid grid--4">
+          <div className="rule-grid rule-grid--4">
             {problemPoints.map((point, i) => (
               <Reveal key={point.title} delay={i * 60}>
-                <article className="card">
-                  <span className="card__icon">
-                    <Icon name={problemIcons[i]} />
-                  </span>
+                <article className="rule-cell">
+                  <span className="rule-cell__index">{pad(i)}</span>
                   <h3>{point.title}</h3>
                   <p>{point.text}</p>
                 </article>
@@ -117,40 +110,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- The solution ---------- */}
-      <section className="section" aria-labelledby="solution">
+      {/* ---------- The solution: editorial rows ---------- */}
+      <section className="band" aria-labelledby="solution">
         <div className="container">
-          <Reveal>
-            <SectionHeading
-              id="solution"
-              eyebrow="The approach"
-              title="One workflow. One record. Shared truth."
-              lead="Holsera proposes replacing ad-hoc coordination with an explicit, rule-driven transaction workflow that both sides — and any reviewer — can inspect."
-            />
-          </Reveal>
-          <div className="grid grid--2">
-            {solutionPillars.map((pillar, i) => (
-              <Reveal key={pillar.title} delay={i * 60}>
-                <article className="card card--interactive">
-                  <div className="flex-between" style={{ marginBottom: '0.5rem' }}>
-                    <h3 style={{ margin: 0 }}>{pillar.title}</h3>
-                    <StatusBadge status={pillar.status} />
+          <div className="editorial">
+            <Reveal className="editorial__side">
+              <SectionHeading
+                id="solution"
+                eyebrow="The approach"
+                title="One workflow. One record. Shared truth."
+                lead="Holsera proposes replacing ad-hoc coordination with an explicit, rule-driven transaction workflow that both sides — and any reviewer — can inspect."
+              />
+              <div className="callout">
+                <strong>Design-stage description.</strong> These are the capabilities
+                Holsera is being engineered to provide. Nothing on this site processes
+                payments, holds funds, verifies identities, or collects sensitive
+                customer data.
+              </div>
+            </Reveal>
+            <div className="list-rows">
+              {solutionPillars.map((pillar, i) => (
+                <Reveal key={pillar.title} delay={i * 60}>
+                  <div className="list-row">
+                    <span className="list-row__index">{pad(i)}</span>
+                    <div className="list-row__head">
+                      <h3>{pillar.title}</h3>
+                      <StatusBadge status={pillar.status} />
+                    </div>
+                    <p>{pillar.text}</p>
                   </div>
-                  <p>{pillar.text}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-          <div className="callout" style={{ marginTop: '2rem' }}>
-            <strong>Design-stage description.</strong> These are the capabilities Holsera is
-            being engineered to provide. Nothing on this site processes payments, holds
-            funds, verifies identities, or collects sensitive customer data.
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ---------- Capabilities & status ---------- */}
-      <section className="section section--soft" aria-labelledby="capabilities">
+      {/* ---------- Capabilities: hairline rule-grid ---------- */}
+      <section className="band band--soft" aria-labelledby="capabilities">
         <div className="container">
           <Reveal>
             <SectionHeading
@@ -160,12 +157,13 @@ export default function HomePage() {
               lead="Every capability carries an explicit status. Nothing is presented as live unless it is marked Available."
             />
           </Reveal>
-          <div className="grid grid--3">
+          <div className="rule-grid rule-grid--3">
             {capabilities.map((cap, i) => (
               <Reveal key={cap.title} delay={(i % 3) * 60}>
-                <article className="card">
-                  <div className="flex-between" style={{ marginBottom: '0.5rem' }}>
-                    <h3 style={{ margin: 0 }}>{cap.title}</h3>
+                <article className="rule-cell">
+                  <span className="rule-cell__index">{pad(i)}</span>
+                  <div className="rule-cell__head">
+                    <h3>{cap.title}</h3>
                     <StatusBadge status={cap.status} />
                   </div>
                   <p>{cap.text}</p>
@@ -173,14 +171,14 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-          <p className="muted small" style={{ marginTop: '1.5rem' }}>
+          <p className="muted small" style={{ marginTop: '1.75rem' }}>
             {capabilityFootnote}
           </p>
         </div>
       </section>
 
       {/* ---------- Workflow preview ---------- */}
-      <section className="section" aria-labelledby="workflow">
+      <section className="band" aria-labelledby="workflow">
         <div className="container">
           <Reveal>
             <SectionHeading
@@ -193,12 +191,15 @@ export default function HomePage() {
           <Reveal>
             <WorkflowStepper steps={workflowSteps} variant="flow" />
           </Reveal>
-          <div className="flex-between" style={{ marginTop: '2rem' }}>
+          <div
+            className="flex-between"
+            style={{ marginTop: '2rem', justifyContent: 'flex-start', gap: '2rem' }}
+          >
             <p className="muted small" style={{ maxWidth: '62ch' }}>
               Conceptual workflow — no payments, custody, or identity verification are
               operational on this website.
             </p>
-            <Link href="/how-it-works/" className="btn btn--secondary btn--sm">
+            <Link href="/how-it-works/" className="arrow-link">
               Read the full workflow
               <Icon name="arrow-right" size={15} />
             </Link>
@@ -207,7 +208,7 @@ export default function HomePage() {
       </section>
 
       {/* ---------- Target segments ---------- */}
-      <section className="section section--soft" aria-labelledby="segments">
+      <section className="band band--soft" aria-labelledby="segments">
         <div className="container">
           <Reveal>
             <SectionHeading
@@ -217,21 +218,19 @@ export default function HomePage() {
               lead="These are target segments for the product — not a list of existing customers. Holsera does not publish customer names, logos, or testimonials without verified, attributable sources."
             />
           </Reveal>
-          <div className="grid grid--4">
+          <div className="rule-grid rule-grid--2">
             {segments.map((seg, i) => (
               <Reveal key={seg.title} delay={i * 60}>
-                <article className="card card--interactive">
-                  <span className="card__icon">
-                    <Icon name={segmentIcons[i]} />
-                  </span>
+                <article className="rule-cell">
+                  <span className="rule-cell__index">{pad(i)}</span>
                   <h3>{seg.title}</h3>
                   <p>{seg.summary}</p>
                 </article>
               </Reveal>
             ))}
           </div>
-          <div className="btn-row" style={{ marginTop: '1.75rem' }}>
-            <Link href="/solutions/" className="btn btn--ghost">
+          <div className="btn-row" style={{ marginTop: '2rem' }}>
+            <Link href="/solutions/" className="arrow-link">
               See solutions by segment
               <Icon name="arrow-right" size={15} />
             </Link>

@@ -38,9 +38,18 @@ Open Graph + Twitter cards with a generated `opengraph-image.png`, and a favicon
 ## Tech
 
 - **Next.js 15** (App Router) + **React 19** + **TypeScript** — static export
-- **Montserrat** via `next/font` (self-hosted at build, zero render-blocking requests)
+- **System font stack** (SF Pro on Apple devices, Segoe UI on Windows) + a monospace
+  stack for labels, statuses, and spec tables — no webfont download at all
 - Plain CSS design system in `src/app/globals.css` (CSS variables, dark/light tokens)
 - No UI framework, no analytics, no backend, no external requests at runtime
+
+## Design language
+
+"Corporate editorial": Apple-style structure (giant type, full-bleed bands, huge
+whitespace, pill CTAs) × Stripe-style precision (hairline rule-grids, monospace
+eyebrows/labels, spec-sheet tables, mono step numerals). Holsera's own brand colors
+(`#0A47E7` / `#1A6DF4` / navy `#071E3D`) — the closing CTA band is the single
+brand-gradient moment. No rounded feature cards, no icon circles, no glow orbs.
 
 ## Brand assets
 

@@ -8,26 +8,23 @@ interface Props {
   secondary?: { href: string; label: string };
 }
 
+/** Full-bleed closing band — the site's single brand-gradient moment. */
 export default function CtaBand({ title, text, primary, secondary }: Props) {
   return (
-    <section className="section section--tight">
+    <section className="cta-deep">
       <div className="container">
-        <div className="cta-band">
-          <div>
-            <h2>{title}</h2>
-            <p>{text}</p>
-          </div>
-          <div className="btn-row">
-            <Link href={primary.href} className="btn btn--primary">
-              {primary.label}
-              <Icon name="arrow-right" size={17} />
+        <h2>{title}</h2>
+        <p>{text}</p>
+        <div className="btn-row btn-row--center">
+          <Link href={primary.href} className="btn btn--primary">
+            {primary.label}
+            <Icon name="arrow-right" size={17} />
+          </Link>
+          {secondary ? (
+            <Link href={secondary.href} className="btn btn--secondary">
+              {secondary.label}
             </Link>
-            {secondary ? (
-              <Link href={secondary.href} className="btn btn--secondary">
-                {secondary.label}
-              </Link>
-            ) : null}
-          </div>
+          ) : null}
         </div>
       </div>
     </section>

@@ -1,16 +1,8 @@
 import type { Metadata, Viewport } from 'next';
-import { Montserrat } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { site } from '@/lib/site.config';
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-montserrat',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -81,7 +73,7 @@ const themeScript = `(function(){var d=document.documentElement;try{var t=localS
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" className={montserrat.variable} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <a className="skip-link" href="#main">

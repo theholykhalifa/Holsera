@@ -62,24 +62,24 @@ export default function HowItWorksPage() {
   return (
     <>
       <section className="hero hero--page">
-        <div className="container container--narrow" style={{ width: 'min(100% - 2.5rem, 920px)' }}>
+        <div className="container">
           <span className="eyebrow">How it works</span>
           <h1>From agreement to settlement — with a record at every step</h1>
           <p className="lead hero__lead">
-            A Holsera transaction moves through five explicit stages. Each stage names who
-            acts, what is checked, and what gets written to the audit trail — so disputes
-            are reconstructed from data, not from memory.
+            A Holsera transaction moves through five explicit stages. Each stage names
+            who acts, what is checked, and what gets written to the audit trail — so
+            disputes are reconstructed from data, not from memory.
           </p>
-          <div className="callout">
-            <strong>Conceptual workflow.</strong> This page describes the system Holsera is
-            engineering. No payment processing, escrow custody, identity verification, or
-            customer-data collection is operational on this website.
+          <div className="callout" style={{ marginTop: '2rem', maxWidth: '70ch' }}>
+            <strong>Conceptual workflow.</strong> This page describes the system Holsera
+            is engineering. No payment processing, escrow custody, identity verification,
+            or customer-data collection is operational on this website.
           </div>
         </div>
       </section>
 
-      <section className="section section--tight" aria-labelledby="stages">
-        <div className="container container--narrow" style={{ width: 'min(100% - 2.5rem, 920px)' }}>
+      <section className="band band--tight" aria-labelledby="stages">
+        <div className="container container--narrow">
           <Reveal>
             <SectionHeading
               id="stages"
@@ -93,7 +93,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="section section--soft" aria-labelledby="states">
+      <section className="band band--soft" aria-labelledby="states">
         <div className="container">
           <Reveal>
             <SectionHeading
@@ -130,10 +130,10 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="record">
+      <section className="band" aria-labelledby="record">
         <div className="container">
-          <div className="split">
-            <Reveal>
+          <div className="editorial">
+            <Reveal className="editorial__side">
               <SectionHeading
                 id="record"
                 eyebrow="The record"
@@ -148,8 +148,8 @@ export default function HowItWorksPage() {
               </ul>
             </Reveal>
             <Reveal>
-              <MockupFrame title="Transaction detail — mockup">
-                <div className="flex-between" style={{ marginBottom: '0.9rem' }}>
+              <MockupFrame>
+                <div className="flex-between" style={{ marginBottom: '1rem' }}>
                   <span className="ui-id">TX-0042 · Transaction detail</span>
                   <span className="ui-chip ui-chip--wait">Mockup</span>
                 </div>
@@ -169,9 +169,9 @@ export default function HowItWorksPage() {
                   <span className="ui-row__label">Release instruction</span>
                   <span className="ui-chip ui-chip--wait">Blocked by conditions</span>
                 </div>
-                <div style={{ marginTop: '1rem' }}>
+                <div style={{ marginTop: '1.25rem' }}>
                   <span className="mono-label">Events</span>
-                  <div className="ui-row" style={{ marginTop: '0.5rem', display: 'block' }}>
+                  <div style={{ marginTop: '0.5rem' }}>
                     <div className="ui-meta">workflow.created — terms snapshot stored</div>
                     <div className="ui-meta">policy.evaluated — 4 rules, 0 flags</div>
                     <div className="ui-meta">condition.waiting — delivery confirmation</div>
