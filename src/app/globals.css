@@ -18,6 +18,14 @@
   --brand-bright: #1a6df4;
   --navy: #071e3d;
 
+  /* Type — single source of truth for mono labels.
+     --font-inter is injected by next/font/local in layout.tsx (self-hosted,
+     basePath-safe); system stack remains the fallback. */
+  --font-sans: var(--font-inter, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
+    Consolas, monospace;
+
   /* Dark theme (default) */
   --bg: #060b14;
   --bg-soft: #0a1120;
@@ -27,6 +35,7 @@
   --text-2: #a7b4c6;
   --text-3: #6b7c93;
   --accent: #1a6df4;
+  --accent-2: #6aa4ff;
   --on-accent: #ffffff;
   --header-bg: rgba(6, 11, 20, 0.78);
   --shadow-lg: 0 40px 80px -24px rgba(0, 0, 0, 0.6);
@@ -58,6 +67,7 @@
   --text-2: #46566c;
   --text-3: #7a8798;
   --accent: #0a47e7;
+  --accent-2: #073ac0;
   --on-accent: #ffffff;
   --header-bg: rgba(255, 255, 255, 0.8);
   --shadow-lg: 0 36px 70px -20px rgba(7, 30, 61, 0.18);
@@ -93,8 +103,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -261,8 +270,7 @@ hr {
 /* Stripe-style mono label */
 .eyebrow {
   display: block;
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -287,8 +295,7 @@ hr {
 }
 
 .mono-label {
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -444,6 +451,7 @@ hr {
 }
 
 .rule-cell {
+  position: relative;
   background: var(--bg);
   flex: 1;
   width: 100%;
@@ -453,6 +461,28 @@ hr {
   gap: 0.55rem;
   align-items: flex-start;
   transition: background-color 0.2s ease;
+}
+
+/* Hover: accent hairline slides in along the cell's top edge. */
+.rule-cell::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.rule-cell:hover::before {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rule-cell::before {
+    transition: none;
+  }
 }
 
 .rule-cell:hover {
@@ -477,8 +507,7 @@ hr {
 }
 
 .rule-cell__index {
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -550,9 +579,17 @@ hr {
 
 .list-row {
   padding-block: clamp(1.5rem, 3vw, 2rem);
+  padding-inline: clamp(0.75rem, 2vw, 1.25rem);
+  margin-inline: calc(clamp(0.75rem, 2vw, 1.25rem) * -1);
   border-top: 1px solid var(--line);
+  border-radius: 10px;
   display: grid;
   gap: 0.6rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.list-row:hover {
+  background: var(--cell-hover);
 }
 
 .list-row:last-child {
@@ -582,8 +619,7 @@ hr {
 }
 
 .list-row .list-row__index {
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   color: var(--text-3);
@@ -596,8 +632,7 @@ hr {
   gap: 0.4rem;
   padding: 0.22rem 0.55rem;
   border-radius: 4px;
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -659,8 +694,7 @@ hr {
 }
 
 .mockup-label {
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -910,8 +944,7 @@ hr {
 }
 
 .site-footer h4 {
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -945,16 +978,46 @@ hr {
   padding-top: 1.5rem;
   color: var(--text-3);
   font-size: 0.78rem;
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   letter-spacing: 0.02em;
 }
 
 /* ---------- 13. Hero ---------- */
-/* Homepage: hybrid — Apple centered statement × Stripe spec strip */
+/* Homepage: hybrid — Apple centered statement × Stripe spec strip.
+   Layered backdrop: brand radial glow + faint blueprint grid, kept
+   deliberately subtle so the type stays the hero. */
 .hero--home {
+  position: relative;
   text-align: center;
   padding-block: clamp(4.5rem, 9vw, 8rem) clamp(3rem, 6vw, 5rem);
+  overflow: hidden;
+}
+
+.hero--home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      58% 46% at 50% 4%,
+      rgba(26, 109, 244, 0.16) 0%,
+      rgba(26, 109, 244, 0.05) 46%,
+      transparent 72%
+    ),
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    56px 56px,
+    56px 56px;
+  mask-image: radial-gradient(72% 62% at 50% 12%, #000 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(72% 62% at 50% 12%, #000 0%, transparent 100%);
+  opacity: 0.55;
+}
+
+.hero--home > * {
+  position: relative;
 }
 
 .hero--home h1 {
@@ -991,8 +1054,7 @@ hr {
   gap: 0.6rem;
   padding: 0.85rem 1.75rem;
   border-left: 1px solid var(--line);
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -1060,8 +1122,7 @@ hr {
 
 .step::before {
   content: counter(step, decimal-leading-zero);
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -1091,8 +1152,7 @@ hr {
 
 .step__meta {
   margin-top: 0.75rem;
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1208,8 +1268,7 @@ hr {
 }
 
 .ui-chip {
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.62rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -1233,8 +1292,7 @@ hr {
 }
 
 .ui-id {
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text);
@@ -1243,8 +1301,7 @@ hr {
 .ui-meta {
   color: var(--text-3);
   font-size: 0.75rem;
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   letter-spacing: 0.01em;
   line-height: 1.9;
 }
@@ -1296,8 +1353,7 @@ hr {
 }
 
 .data-table th {
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -1410,10 +1466,67 @@ hr {
 
 /* ---------- 19. Deep CTA band (the brand moment) ---------- */
 .cta-deep {
+  position: relative;
+  overflow: hidden;
   background: var(--cta-grad);
   color: #ffffff;
   text-align: center;
   padding-block: clamp(4.5rem, 9vw, 7.5rem);
+}
+
+/* Soft radial lift behind the copy + a slow sheen sweep across the
+   gradient. Purely decorative; disabled for reduced-motion users. */
+.cta-deep::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    52% 60% at 50% 42%,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+}
+
+.cta-deep::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  bottom: -60%;
+  left: -30%;
+  width: 34%;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.07) 45%,
+    rgba(255, 255, 255, 0.13) 50%,
+    rgba(255, 255, 255, 0.07) 55%,
+    transparent 100%
+  );
+  transform: skewX(-14deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .cta-deep::after {
+    animation: cta-sheen 7.5s ease-in-out 1.2s infinite;
+  }
+}
+
+@keyframes cta-sheen {
+  0% {
+    left: -34%;
+  }
+  55% {
+    left: 118%;
+  }
+  100% {
+    left: 118%;
+  }
+}
+
+.cta-deep > .container {
+  position: relative;
 }
 
 .cta-deep h2 {
@@ -1455,6 +1568,99 @@ hr {
   color: #ffffff;
 }
 
+/* ---------- 19b. Launch signup band ---------- */
+/* Pre-launch email capture. Same honesty contract as ContactForm:
+   validates locally, transmits nothing, says so plainly. */
+.signup {
+  position: relative;
+  text-align: center;
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+  border-top: 1px solid var(--line);
+}
+
+.signup h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  max-width: 24ch;
+  margin: 0 auto 0.75rem;
+}
+
+.signup .lead {
+  max-width: 52ch;
+  margin: 0 auto 1.75rem;
+}
+
+.signup__form {
+  display: flex;
+  gap: 0.625rem;
+  justify-content: center;
+  max-width: 30rem;
+  margin: 0 auto 1rem;
+}
+
+.signup__form input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.8rem 0.95rem;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9375rem;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.signup__form input::placeholder {
+  color: var(--text-3);
+  opacity: 0.85;
+}
+
+.signup__form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(26, 109, 244, 0.18);
+}
+
+.signup__form .btn {
+  flex: none;
+}
+
+.signup__error {
+  display: block;
+  margin: -0.5rem 0 1rem;
+  font-size: 0.8rem;
+  color: #ff8b8b;
+}
+
+[data-theme='light'] .signup__error {
+  color: #c62828;
+}
+
+.signup__note {
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+@media (max-width: 520px) {
+  .signup__form {
+    flex-direction: column;
+  }
+}
+
+/* ---------- 19c. Scroll progress ---------- */
+/* Thin brand line along the bottom edge of the sticky header showing
+   reading progress. Hidden entirely when JS is unavailable. */
+.scroll-progress {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
 /* ---------- 20. Misc utilities ---------- */
 .icon {
   width: 20px;
@@ -1483,8 +1689,7 @@ hr {
 }
 
 .tag {
-  font-family: ui-monospace, 'SFMono-Regular', 'Cascadia Code', 'Roboto Mono', Menlo,
-    Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.04em;
   padding: 0.3rem 0.6rem;

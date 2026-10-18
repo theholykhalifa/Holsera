@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
 import Icon from '@/components/Icon';
+import LaunchSignup from '@/components/LaunchSignup';
 import MockupFrame from '@/components/MockupFrame';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
@@ -206,6 +207,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ---------- Launch signup: mid-page capture ---------- */}
+      <LaunchSignup />
 
       {/* ---------- Target segments ---------- */}
       <section className="band band--soft" aria-labelledby="segments">

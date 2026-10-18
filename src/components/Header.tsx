@@ -5,20 +5,30 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { navLinks } from '@/lib/nav';
 import Icon from './Icon';
-import { LogoMark } from './LogoMark';
+import { asset } from '@/lib/asset';
 import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-  // Header gains a soft shadow once the page scrolls under it.
+  // Header gains a soft shadow once the page scrolls under it; the thin
+  // brand line tracks reading progress (0 at top, 1 at bottom).
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0);
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('resize', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, []);
 
   // Close the mobile menu whenever navigation happens.
@@ -42,9 +52,24 @@ export default function Header() {
   return (
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
       <div className="container site-header__inner">
-        <Link href="/" className="brand" aria-label="Holsera — home">
-          <LogoMark height={26} />
-          <span className="brand__name">HOLSERA</span>
+        <Link href="/" className="brand brand--header" aria-label="Holsera — home">
+          {/* Official horizontal lockups — swaps with data-theme. Falls back to CSS if assets missing. */}
+          <img
+            src={asset('/brand/logo-horizontal-dark.png')}
+            alt="Holsera"
+            width={142}
+            height={28}
+            className="lockup__img lockup__img--on-dark brand__lockup-img"
+            decoding="async"
+          />
+          <img
+            src={asset('/brand/logo-horizontal.png')}
+            alt="Holsera"
+            width={142}
+            height={28}
+            className="lockup__img lockup__img--on-light brand__lockup-img"
+            decoding="async"
+          />
         </Link>
 
         <nav
@@ -81,6 +106,12 @@ export default function Header() {
           </button>
         </div>
       </div>
+
+      <div
+        className="scroll-progress"
+        style={{ transform: `scaleX(${progress})` }}
+        aria-hidden="true"
+      />
     </header>
   );
 }

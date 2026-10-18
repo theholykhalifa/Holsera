@@ -14,7 +14,7 @@
 | Static export (`out/`)             | ✅ 17 routes: 12 pages (incl. `/founder/`, `/faq/`, `/press/`, legal), 404, icon, robots, sitemap |
 | First Load JS per page             | ✅ ~103–107 kB shared (optimized)                   |
 | Console errors (browser probe)     | ✅ 0 on light + dark                               |
-| Fonts                              | ✅ Montserrat self-hosted (5 woff2, no external requests) |
+| Fonts                              | ✅ Inter variable self-hosted via `next/font/local` (1 woff2, no external requests) |
 | SEO metadata                       | ✅ Titles/descriptions/canonical per page, OG + Twitter images on every page, `sitemap.xml`, `robots.txt` |
 | Visual QA (10 screenshots, 2 themes + mobile) | ✅ Reviewed page-by-page; no layout defects remaining |
 
@@ -43,10 +43,11 @@ security/about/contact × dark, home+contact × light, home × mobile 390px).
   nothing), placeholder channels, sensitive-data warning, security-disclosure path.
 
 ### Design & theming
-- Dark-first tokens (`#050E1D` base, `#0A47E7`/`#1A6DF4` blues, `#071E3D` navy) with
+- Dark-first tokens (`#060B14` base, `#0A47E7`/`#1A6DF4` blues, `#071E3D` navy) with
   full-parity light mode; toggle persists (localStorage) with a no-flash inline script.
-- Montserrat type scale, restrained motion (IntersectionObserver reveals, disabled
-  under `prefers-reduced-motion`, content readable without JS), sticky blurred header,
+- Inter variable type scale (self-hosted, `next/font/local`), restrained motion
+  (IntersectionObserver reveals, disabled under `prefers-reduced-motion`, content
+  readable without JS), sticky blurred header with scroll-progress line,
   blueprint-grid hero treatment, responsive down to 390 px.
 
 ### Brand assets (official files supplied by user, processed)
@@ -125,6 +126,21 @@ npm run serve    # preview out/ locally
 node scripts/brand-prep.mjs    # reprocess logos after changes
 node scripts/screenshot.mjs    # regenerate visual QA screenshots
 ```
+
+## 7. Changelog — 2026-10-18 polish pass
+
+- **Fixed:** `--font-mono` and `--accent-2` CSS tokens were referenced but never
+  defined (FAQ toggle glyph, swatch hex, prose link hovers silently broken). Both
+  are now defined; all 16 hard-coded mono stacks consolidated onto `--font-mono`.
+- **Added:** self-hosted Inter variable font via `next/font/local`
+  (`src/fonts/InterVariable.woff2`, basePath-safe, no external requests).
+- **Added:** launch email-capture band on the homepage
+  (`src/components/LaunchSignup.tsx`) — same demo/no-transmission contract as the
+  contact form.
+- **Added:** reading-progress line in the sticky header, hero blueprint-grid +
+  glow backdrop, CTA-band sheen, hover states on rule-cells and list-rows.
+- **Corrected:** this report previously claimed a Montserrat setup and a
+  `#050E1D` base color; both were stale.
 
 **Deployment status (updated 2026-10-17, post-delivery):** the site is live on
 GitHub Pages at <https://theholykhalifa.github.io/Holsera/>, auto-deployed by
