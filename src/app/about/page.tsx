@@ -81,26 +81,60 @@ export default function AboutPage() {
               <SectionHeading
                 id="story-h"
                 eyebrow="Our story"
-                title="From observation to infrastructure"
+                title="Built on a Belief. Driven by Trust."
               />
               <p className="lead" style={{ color: 'var(--text-2)' }}>
-                The same pattern kept appearing: capable teams losing days to disputes
-                that a better record would have prevented in minutes. Holsera started as
-                an attempt to turn that record into infrastructure.
+                Every great company begins with a problem worth solving. Holsera began with
+                a simple belief: the digital world should be a place where people can do
+                business with confidence, not uncertainty.
               </p>
             </Reveal>
             <Reveal>
-              <div className="placeholder-block">
-                <b>Editable placeholder — founding details.</b> The full founding story,
-                founder names, and company history should be supplied by the Holsera team
-                before launch. Nothing here may be invented on their behalf.
-                <br />
-                <br />
-                <span className="ph">[Founding story — to be supplied]</span>
-                <br />
-                <span className="ph">[Founders / team — to be supplied]</span>
-                <br />
-                <span className="ph">[Founded — {site.company.founded}]</span>
+              <div className="prose">
+                <p>
+                  Founded in 2020 by Khalifa, Holsera was born from a vision to make digital
+                  transactions safer, more reliable, and more trustworthy. As commerce
+                  increasingly moved online, the opportunities grew — but so did the risks.
+                  Fraud, compromised data, unreliable transactions, and the absence of
+                  meaningful trust between strangers created barriers to the digital
+                  economy&apos;s full potential.
+                </p>
+                <p>
+                  We believed technology could do more than simply connect people. It could
+                  protect them. That belief became the foundation of Holsera.
+                </p>
+                <p>
+                  From the beginning, our vision extended beyond conventional
+                  cybersecurity. We saw an opportunity to bring security and trust together,
+                  combining cybersecurity principles with secure transaction
+                  infrastructure, escrow technology, fraud prevention, and digital trust
+                  solutions. Our goal was to help build an environment where buyers and
+                  sellers could interact with greater confidence, where security was
+                  integrated into the transaction itself rather than treated as an
+                  afterthought.
+                </p>
+                <p>
+                  Holsera was envisioned not merely as a service provider, but as the
+                  foundation of a more secure digital ecosystem — one designed around the
+                  protection of people, businesses, and the value they exchange.
+                </p>
+                <p>
+                  Building that vision requires more than technology. It demands
+                  discipline, accountability, and a long-term commitment to earning trust.
+                  These principles continue to shape our approach: security by design,
+                  transparency by principle, and innovation guided by responsibility.
+                </p>
+                <p>
+                  As we look toward the future, our ambition remains clear: to help
+                  redefine how trust works in the digital economy. Through the convergence
+                  of cybersecurity, secure payments, escrow infrastructure, and intelligent
+                  fraud prevention, Holsera aims to make safer digital interactions the
+                  standard rather than the exception.
+                </p>
+                <p>
+                  We are building for a world where trust does not have to be assumed — it
+                  can be engineered.
+                </p>
               </div>
             </Reveal>
           </div>
@@ -134,6 +168,12 @@ export default function AboutPage() {
                   he leads Holsera&apos;s mission to make online transactions safer,
                   more transparent, and more reliable through integrated
                   cybersecurity, escrow solutions, and fraud prevention.
+                </p>
+                <p>
+                  Holsera is, today, a team of one. Every line of the product, every
+                  design decision, and every word on this site is Khalifa&apos;s — a
+                  deliberate stage, not an accident of growth. The first teammates will
+                  be announced here when they exist.
                 </p>
                 <p>
                   His vision is simple: build technology people can trust.

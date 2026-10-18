@@ -170,13 +170,14 @@ export default function PressPage() {
                 <b style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.8125rem' }}>
                   LONG
                 </b>
-                Holsera is a pre-launch technology venture founded by Khalifa, building
-                transaction-trust infrastructure for digital commerce. Its intended platform
-                combines secure transaction workflows, escrow-style release logic, and fraud
-                signals in one system, designed so that businesses and individuals can
-                interact with greater confidence, security, and transparency. The company is
-                in development; capabilities are published with explicit statuses rather
-                than marketing claims. Tagline: {site.tagline}
+                Holsera is a pre-launch technology venture founded in 2020 by Khalifa, building
+                transaction-trust infrastructure for digital commerce. Currently operated as a
+                founder-led team of one, its intended platform combines secure transaction
+                workflows, escrow-style release logic, and fraud signals in one system,
+                designed so that businesses and individuals can interact with greater
+                confidence, security, and transparency. The company is in development;
+                capabilities are published with explicit statuses rather than marketing
+                claims. Tagline: {site.tagline}
               </div>
             </Reveal>
           </div>

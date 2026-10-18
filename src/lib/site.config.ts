@@ -45,7 +45,8 @@ export const site = {
     /** Confirmed by the founder: the company trades as "Holsera".
      *  Update here if a distinct registered legal name is published later. */
     legalName: 'Holsera',
-    founded: '[founding year — to be confirmed]',
+    /** Confirmed first-party: founded in 2020 by Khalifa. */
+    founded: '2020',
   },
 
   /** Add real profiles here when they exist; the footer hides this list when empty. */

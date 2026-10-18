@@ -88,6 +88,7 @@ const siteJsonLd = {
       logo: `${site.url}/brand/logo-horizontal-dark.png`,
       slogan: site.tagline,
       description: site.description,
+      foundingDate: site.company.founded,
       founder: { '@id': `${site.url}/founder/#person` },
     },
     {

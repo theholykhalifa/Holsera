@@ -64,9 +64,10 @@ const faqs: FaqItem[] = [
     q: 'Who is behind Holsera?',
     a: (
       <>
-        Holsera is founder-led. Khalifa is the Founder and CEO. You can read his profile on
-        the <Link href="/founder/">Founder</Link> page. The company is pre-launch; details
-        beyond confirmed facts are marked as placeholders rather than invented.
+        Holsera is founder-led — and currently a team of one. Khalifa is the Founder
+        and CEO, and today builds the product alone, by choice and by stage. You can
+        read his profile on the <Link href="/founder/">Founder</Link> page. Teammates
+        will be announced when they exist; nothing will be implied before then.
       </>
     ),
   },
@@ -156,7 +157,7 @@ const faqText: [string, string][] = [
   ],
   [
     'Who is behind Holsera?',
-    'Holsera is founder-led. Khalifa is the Founder and CEO. Details beyond confirmed facts are marked as placeholders rather than invented.',
+    'Holsera is founder-led — and currently a team of one. Khalifa is the Founder and CEO, and today builds the product alone, by choice and by stage. Teammates will be announced when they exist; nothing will be implied before then.',
   ],
   [
     'How is a transaction designed to work on Holsera?',

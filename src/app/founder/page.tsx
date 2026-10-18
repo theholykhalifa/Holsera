@@ -119,9 +119,10 @@ export default function FounderPage() {
                 who may never meet in person.
               </p>
               <p>
-                The idea for Holsera originated in 2020 and has since grown into the
-                venture described across this site — a product still in development,
-                presented with explicit statuses rather than marketing claims.
+                Founded in 2020 by Khalifa, Holsera has since grown into the venture
+                described across this site — a product still in development, presented
+                with explicit statuses rather than marketing claims. It remains, today, a
+                team of one: the founder builds every part of it personally.
               </p>
               <p>
                 As the driving force behind Holsera, Khalifa focuses on building a
