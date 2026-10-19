@@ -7,6 +7,7 @@ import MockupFrame from '@/components/MockupFrame';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
 import StatusBadge from '@/components/StatusBadge';
+import TrustNetwork from '@/components/TrustNetwork';
 import WorkflowStepper from '@/components/WorkflowStepper';
 import {
   capabilities,
@@ -28,29 +29,35 @@ const pad = (i: number) => String(i + 1).padStart(2, '0');
 export default function HomePage() {
   return (
     <>
-      {/* ---------- Hero: statement ---------- */}
+      {/* ---------- Hero: statement + trust-network visual ---------- */}
       <section className="hero hero--home">
-        <div className="container">
-          <span className="eyebrow">Transaction trust infrastructure</span>
-          <h1 className="hero__title">Trust, engineered into every transaction.</h1>
-          <p className="lead hero__lead">
-            Holsera is building the trust layer for digital commerce: structured
-            transaction workflows, fraud-prevention signals, and escrow-style release
-            logic — so counterparties can move forward on evidence, not assumption.
-          </p>
-          <div className="btn-row btn-row--center">
-            <Link href="/platform/" className="btn btn--primary">
-              Explore the platform
-              <Icon name="arrow-right" size={17} />
-            </Link>
-            <Link href="/how-it-works/" className="btn btn--secondary">
-              How it works
-            </Link>
+        <div className="container hero__grid">
+          <div className="hero__copy">
+            <span className="eyebrow">Transaction trust infrastructure</span>
+            <h1 className="hero__title">Trust, engineered into every transaction.</h1>
+            <p className="lead hero__lead">
+              Holsera is building the trust layer for digital commerce: structured
+              transaction workflows, fraud-prevention signals, and escrow-style release
+              logic — so counterparties can move forward on evidence, not assumption.
+            </p>
+            <div className="btn-row">
+              <Link href="/platform/" className="btn btn--primary btn--lg">
+                Explore the platform
+                <Icon name="arrow-right" size={17} />
+              </Link>
+              <Link href="/contact/" className="btn btn--secondary btn--lg">
+                Discuss a partnership
+              </Link>
+            </div>
+            <div className="hero__spec">
+              <span>Secure workflows</span>
+              <span>Fraud signals</span>
+              <span>Release logic</span>
+            </div>
           </div>
-          <div className="hero__spec">
-            <span>Secure workflows</span>
-            <span>Fraud signals</span>
-            <span>Release logic</span>
+
+          <div className="hero__viz">
+            <TrustNetwork />
           </div>
         </div>
 

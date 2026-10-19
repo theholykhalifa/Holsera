@@ -384,6 +384,12 @@ hr {
   font-size: 0.875rem;
 }
 
+/* Hero-scale call to action */
+.btn--lg {
+  padding: 1rem 1.9rem;
+  font-size: 1.0625rem;
+}
+
 .btn-row {
   display: flex;
   flex-wrap: wrap;
@@ -983,12 +989,12 @@ hr {
 }
 
 /* ---------- 13. Hero ---------- */
-/* Homepage: hybrid — Apple centered statement × Stripe spec strip.
+/* Homepage: split hero — editorial copy left, trust-network visual right.
    Layered backdrop: brand radial glow + faint blueprint grid, kept
    deliberately subtle so the type stays the hero. */
 .hero--home {
   position: relative;
-  text-align: center;
+  text-align: left;
   padding-block: clamp(4.5rem, 9vw, 8rem) clamp(3rem, 6vw, 5rem);
   overflow: hidden;
 }
@@ -1000,7 +1006,7 @@ hr {
   pointer-events: none;
   background:
     radial-gradient(
-      58% 46% at 50% 4%,
+      52% 44% at 30% 2%,
       rgba(26, 109, 244, 0.16) 0%,
       rgba(26, 109, 244, 0.05) 46%,
       transparent 72%
@@ -1011,8 +1017,8 @@ hr {
     100% 100%,
     56px 56px,
     56px 56px;
-  mask-image: radial-gradient(72% 62% at 50% 12%, #000 0%, transparent 100%);
-  -webkit-mask-image: radial-gradient(72% 62% at 50% 12%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(78% 68% at 34% 10%, #000 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(78% 68% at 34% 10%, #000 0%, transparent 100%);
   opacity: 0.55;
 }
 
@@ -1022,7 +1028,7 @@ hr {
 
 .hero--home h1 {
   max-width: 15ch;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .hero--home .eyebrow {
@@ -1034,17 +1040,39 @@ hr {
 }
 
 .hero__lead {
-  max-width: 58ch;
-  margin-inline: auto;
+  max-width: 54ch;
+  margin-inline: 0;
   margin-bottom: 2rem;
+}
+
+/* Two-column hero: copy | trust-network visual */
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.hero__viz {
+  min-width: 0;
+}
+
+@media (max-width: 940px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__viz {
+    max-width: 560px;
+  }
 }
 
 .hero__spec {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   max-width: fit-content;
-  margin: 3rem auto 0;
+  margin: 3rem 0 0;
   border-block: 1px solid var(--line);
 }
 
@@ -1096,6 +1124,168 @@ hr {
 
 .hero--page .btn-row {
   margin-top: 2rem;
+}
+
+/* ---------- 13b. Trust-network hero visual ---------- */
+.trust-net {
+  margin: 0;
+}
+
+.trust-net__frame {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  background:
+    radial-gradient(90% 70% at 50% 0%, rgba(26, 109, 244, 0.12) 0%, transparent 60%),
+    var(--navy);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.trust-net__frame svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.trust-net__caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.trust-net__caption .mono-label {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* SVG internals */
+.tn-node-rect {
+  fill: #0a2750;
+  stroke: rgba(255, 255, 255, 0.22);
+}
+
+.tn-node-name {
+  fill: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+
+.tn-node-sub {
+  fill: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tn-center-rect {
+  fill: #0d2f6b;
+  stroke: rgba(255, 255, 255, 0.35);
+}
+
+.tn-center-name {
+  fill: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-family: var(--font-sans);
+}
+
+.tn-center-sub {
+  fill: rgba(255, 255, 255, 0.62);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tn-edge {
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1.25;
+}
+
+.tn-flow {
+  stroke: #4d8dff;
+  stroke-width: 1.6;
+  stroke-dasharray: 10 130;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.85;
+}
+
+.tn-edge-label {
+  fill: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tn-dot {
+  fill: #4d8dff;
+}
+
+.tn-ring {
+  fill: none;
+  stroke: rgba(77, 141, 255, 0.5);
+  stroke-width: 1;
+}
+
+/* Motion: slow, subtle, fully disabled for reduced-motion users */
+@media (prefers-reduced-motion: no-preference) {
+  .tn-flow--1 {
+    animation: tn-dash 6s linear infinite;
+  }
+
+  .tn-flow--2 {
+    animation: tn-dash 7.5s linear 1s infinite;
+  }
+
+  .tn-flow--3 {
+    animation: tn-dash 6.8s linear 2.2s infinite;
+  }
+
+  .tn-flow--4 {
+    animation: tn-dash 8.2s linear 0.5s infinite;
+  }
+
+  .tn-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: tn-ring 3.8s ease-out infinite;
+  }
+}
+
+@keyframes tn-dash {
+  to {
+    stroke-dashoffset: -140;
+  }
+}
+
+@keyframes tn-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tn-flow,
+  .tn-ring {
+    animation: none !important;
+  }
 }
 
 /* ---------- 14. Workflow steps ---------- */
