@@ -57,12 +57,14 @@ export default function HomePage() {
           </div>
 
           <div className="hero__viz">
-            <TrustNetwork />
+            <Reveal variant="scale" delay={150}>
+              <TrustNetwork />
+            </Reveal>
           </div>
         </div>
 
         <div className="container container--wide hero__visual">
-          <Reveal>
+          <Reveal variant="scale">
             <MockupFrame>
               <div className="flex-between" style={{ marginBottom: '1rem' }}>
                 <span className="ui-id">

@@ -98,6 +98,11 @@ const settle = async (page) => {
 const shoot = async (name, url, theme, viewport, suffix = '') => {
   const page = await browser.newPage();
   await page.setViewport(viewport);
+  // QA must reflect the animated experience: headless Chrome can report
+  // prefers-reduced-motion: reduce, which silences every animation.
+  await page.emulateMediaFeatures([
+    { name: 'prefers-reduced-motion', value: 'no-preference' },
+  ]);
   await page.goto(`http://localhost:${PORT}${url}`, { waitUntil: 'networkidle0' });
   await page.evaluate((t) => localStorage.setItem('holsera-theme', t), theme);
   await page.reload({ waitUntil: 'networkidle0' });
