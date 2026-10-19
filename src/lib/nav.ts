@@ -7,6 +7,7 @@ export const navLinks: NavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/platform/', label: 'Platform' },
   { href: '/how-it-works/', label: 'How It Works' },
+  { href: '/demo/', label: 'Demo' },
   { href: '/solutions/', label: 'Solutions' },
   { href: '/security-trust/', label: 'Security & Trust' },
   { href: '/about/', label: 'About' },

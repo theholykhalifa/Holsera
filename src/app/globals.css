@@ -2539,3 +2539,330 @@ hr {
 .asset-3d {
   filter: drop-shadow(0 22px 40px rgba(10, 71, 231, 0.3));
 }
+
+/* ---------- 23. Interactive concept demo ---------- */
+.demo-panel {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.demo-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0.7rem 1.15rem;
+  background: var(--badge-unconfirmed-bg);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.8125rem;
+  font-weight: 550;
+  color: var(--badge-unconfirmed-fg);
+}
+
+.demo-banner .icon {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+.demo-body {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.demo-scenario h3 {
+  margin: 0.2rem 0 0.15rem;
+  font-size: 1.2rem;
+}
+
+.demo-scenario p {
+  margin: 0;
+}
+
+.demo-amount {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.demo-conditions {
+  margin: 0.5rem 0 0;
+  max-width: 70ch;
+}
+
+.demo-timeline {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 1.5rem 0 0.6rem;
+  scrollbar-width: thin;
+}
+
+.demo-step {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text-2);
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 550;
+  cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.demo-step:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.demo-step[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.demo-step--missing {
+  border-color: var(--badge-unconfirmed-fg);
+  color: var(--badge-unconfirmed-fg);
+}
+
+.demo-step--missing[aria-pressed='true'] {
+  background: var(--badge-unconfirmed-fg);
+  color: var(--navy);
+}
+
+.demo-step__index {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  opacity: 0.7;
+}
+
+.demo-detail {
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  background: var(--bg-soft);
+}
+
+.demo-detail__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.demo-detail h3 {
+  margin: 0.2rem 0 0;
+  font-size: 1.1rem;
+}
+
+.demo-meta {
+  display: flex;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-top: 0.35rem;
+}
+
+.demo-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.demo-summary {
+  margin: 0.9rem 0 1.1rem;
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  max-width: 70ch;
+}
+
+.demo-evidence {
+  margin: 0.5rem 0 1.1rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.demo-evidence li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--text-2);
+}
+
+.demo-evidence li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+.demo-checks {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1.1rem;
+}
+
+.demo-check {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+
+.demo-check strong {
+  display: block;
+  font-weight: 600;
+}
+
+.demo-check__detail {
+  display: block;
+  color: var(--text-3);
+  font-size: 0.8125rem;
+  margin-top: 0.1rem;
+}
+
+.demo-check__result {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  flex: none;
+  margin-top: 0.1rem;
+}
+
+.demo-check--pass .demo-check__result,
+.demo-check__result.demo-check--pass {
+  color: var(--badge-available-fg);
+  background: var(--badge-available-bg);
+}
+
+.demo-check--fail .demo-check__result,
+.demo-check__result.demo-check--fail {
+  color: #ff8b8b;
+  background: rgba(255, 139, 139, 0.1);
+}
+
+[data-theme='light'] .demo-check--fail .demo-check__result,
+[data-theme='light'] .demo-check__result.demo-check--fail {
+  color: #c62828;
+  background: rgba(198, 40, 40, 0.08);
+}
+
+.demo-check--pending .demo-check__result,
+.demo-check__result.demo-check--pending {
+  color: var(--badge-unconfirmed-fg);
+  background: var(--badge-unconfirmed-bg);
+}
+
+.demo-next {
+  margin: 0;
+  border-left: 2px solid var(--accent);
+  padding: 0.35rem 0 0.35rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-2);
+  max-width: 70ch;
+}
+
+.demo-switch-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+  font-size: 0.9rem;
+}
+
+.demo-switch-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.demo-verdict {
+  margin-top: 1.25rem;
+  border-radius: 12px;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.demo-verdict--approved {
+  border: 1px solid var(--badge-available-fg);
+  background: var(--badge-available-bg);
+}
+
+.demo-verdict--blocked {
+  border: 1px solid var(--badge-unconfirmed-fg);
+  background: var(--badge-unconfirmed-bg);
+}
+
+.demo-verdict__head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.demo-verdict--approved .demo-verdict__head {
+  color: var(--badge-available-fg);
+}
+
+.demo-verdict--blocked .demo-verdict__head {
+  color: var(--badge-unconfirmed-fg);
+}
+
+.demo-verdict h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.demo-verdict__conditions {
+  list-style: none;
+  margin: 0.9rem 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.demo-verdict__conditions li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+
+.demo-verdict p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-2);
+  max-width: 75ch;
+}
+
+.demo-footnote {
+  margin: 1.1rem 0 0;
+}

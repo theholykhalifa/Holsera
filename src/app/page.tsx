@@ -213,6 +213,10 @@ export default function HomePage() {
               Read the full workflow
               <Icon name="arrow-right" size={15} />
             </Link>
+            <Link href="/demo/" className="arrow-link">
+              Try the interactive demo
+              <Icon name="arrow-right" size={15} />
+            </Link>
           </div>
         </div>
       </section>
