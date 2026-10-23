@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4>Site</h4>
+            <h3>Site</h3>
             <ul className="footer-links">
               {footerSiteLinks.map((link) => (
                 <li key={link.href}>
@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4>Legal</h4>
+            <h3>Legal</h3>
             <ul className="footer-links">
               {footerLegalLinks.map((link) => (
                 <li key={link.href}>
@@ -58,7 +58,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4>Contact</h4>
+            <h3>Contact</h3>
             <ul className="footer-links">
               <li>
                 <Placeholder>{site.contact.email}</Placeholder>

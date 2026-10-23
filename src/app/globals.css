@@ -33,9 +33,11 @@
   --line-strong: rgba(255, 255, 255, 0.18);
   --text: #f2f5fa;
   --text-2: #a7b4c6;
-  --text-3: #6b7c93;
+  --text-3: #8497ad;
   --accent: #1a6df4;
   --accent-2: #6aa4ff;
+  /* Accessible accent for small text on dark bg (>=4.5:1); buttons keep --accent */
+  --accent-text: #7db4ff;
   --on-accent: #ffffff;
   --header-bg: rgba(6, 11, 20, 0.78);
   --shadow-lg: 0 40px 80px -24px rgba(0, 0, 0, 0.6);
@@ -65,9 +67,11 @@
   --line-strong: #c9ced8;
   --text: #0c1626;
   --text-2: #46566c;
-  --text-3: #7a8798;
+  --text-3: #5f6b7d;
   --accent: #0a47e7;
   --accent-2: #073ac0;
+  /* Accessible accent for small text on light bg (>=4.5:1) */
+  --accent-text: #0a47e7;
   --on-accent: #ffffff;
   --header-bg: rgba(255, 255, 255, 0.8);
   --shadow-lg: 0 36px 70px -20px rgba(7, 30, 61, 0.18);
@@ -272,7 +276,7 @@ hr {
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 1.25rem;
 }
 
@@ -403,9 +407,10 @@ hr {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 500;
   font-size: 0.9375rem;
+  padding-block: 0.2rem;
 }
 
 .arrow-link .icon {
@@ -518,11 +523,13 @@ hr {
 }
 
 .band--deep .rule-cell__index {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
 }
 
+.rule-cell h2,
 .rule-cell h3 {
   margin: 0;
+  font-size: 1.05rem;
 }
 
 .rule-cell p {
@@ -946,7 +953,7 @@ hr {
   }
 }
 
-.site-footer h4 {
+.site-footer h3 {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
@@ -966,6 +973,8 @@ hr {
 
 .footer-links a {
   color: var(--text-2);
+  display: inline-block;
+  padding-block: 0.2rem;
 }
 
 .footer-links a:hover {
@@ -2282,6 +2291,13 @@ hr {
   user-select: none;
 }
 
+.asset-card__name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
 /* Subtle glass-tile life: a slow float with a periodic light sweep.
    Both are neutralised by the global prefers-reduced-motion block. */
 @keyframes monogram-float {
@@ -2569,7 +2585,7 @@ hr {
   padding: clamp(1.25rem, 3vw, 2rem);
 }
 
-.demo-scenario h3 {
+.demo-scenario h2 {
   margin: 0.2rem 0 0.15rem;
   font-size: 1.2rem;
 }
@@ -2795,13 +2811,6 @@ hr {
   font-size: 0.9rem;
 }
 
-.demo-switch-row input {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--accent);
-  cursor: pointer;
-}
-
 .demo-verdict {
   margin-top: 1.25rem;
   border-radius: 12px;
@@ -2926,7 +2935,7 @@ hr {
   appearance: none;
   -webkit-appearance: none;
   width: 42px;
-  height: 23px;
+  height: 24px;
   border-radius: 999px;
   background: var(--line-strong);
   position: relative;
@@ -3050,7 +3059,7 @@ hr {
   font-size: 0.66rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.6);
   margin-top: auto;
   padding-top: 0.4rem;
 }
@@ -3119,7 +3128,7 @@ hr {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .fact-grid {
@@ -3166,7 +3175,7 @@ hr {
   margin: 2.25rem auto 0;
   max-width: 78ch;
   text-align: center;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.78rem;
   line-height: 1.55;
 }
@@ -3321,8 +3330,11 @@ hr {
 
 /* ---------- 31. Industry solution pages ---------- */
 .crumb {
-  color: var(--brand-bright, #7db4ff);
+  color: var(--accent-text);
   text-decoration: none;
+  display: inline-block;
+  padding-block: 0.3rem;
+  margin-block: -0.3rem;
 }
 .crumb:hover { text-decoration: underline; }
 

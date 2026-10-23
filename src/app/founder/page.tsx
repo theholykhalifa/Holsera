@@ -55,7 +55,7 @@ export default function FounderPage() {
                   K
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <h3 style={{ margin: 0 }}>Khalifa</h3>
+                  <p className="asset-card__name">Khalifa</p>
                   <span className="mono-label">Founder &amp; CEO · Holsera</span>
                 </div>
                 <div className="mockup__caption">

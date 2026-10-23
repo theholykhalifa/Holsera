@@ -717,6 +717,48 @@ export const threatModelNote =
   'This is a design-stage threat model: it describes what Holsera is being engineered to defend against, not controls that have been independently audited or certified. No certification, audit, or penetration-test result is claimed on this site.';
 
 /* ------------------------------------------------------------------ */
+/* Three-pillar positioning                                             */
+/* ------------------------------------------------------------------ */
+export interface Pillar {
+  name: string;
+  what: string;
+  includes: string[];
+}
+
+export const threePillars: Pillar[] = [
+  {
+    name: 'Trust infrastructure',
+    what:
+      'The shared record both sides rely on: an append-only transaction history with actor-attributed evidence, so what happened can be reconstructed rather than argued about.',
+    includes: [
+      'Structured transaction workflows',
+      'Evidence attached by reference with integrity hashes',
+      'Audit trail exportable for review',
+    ],
+  },
+  {
+    name: 'Risk intelligence',
+    what:
+      'Signals that explain themselves. Anomalies surface with the data that triggered them, and anything uncertain routes to human review — with the decision written back into the record.',
+    includes: [
+      'Explainable risk signals, no silent flags',
+      'Human review queue with recorded rationale',
+      'Per-party history informing each evaluation',
+    ],
+  },
+  {
+    name: 'Transaction orchestration',
+    what:
+      'The state machine that moves a transaction through explicit, agreement-defined conditions — coordinating payment commitment, delivery evidence, and release without holding funds itself.',
+    includes: [
+      'Declarative release conditions per agreement',
+      'Dual control reserved for exceptions',
+      'Planned connections to licensed payment providers',
+    ],
+  },
+];
+
+/* ------------------------------------------------------------------ */
 /* Founder page — design convictions and the honest build story        */
 /* ------------------------------------------------------------------ */
 export interface Conviction {

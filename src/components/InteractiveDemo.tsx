@@ -64,7 +64,7 @@ export default function InteractiveDemo() {
         <div className="flex-between demo-scenario">
           <div>
             <span className="mono-label">Simulated transaction</span>
-            <h3>{demoScenario.title}</h3>
+            <h2>{demoScenario.title}</h2>
             <p className="muted small">{demoScenario.parties}</p>
           </div>
           <span className="demo-amount">{demoScenario.amount}</span>

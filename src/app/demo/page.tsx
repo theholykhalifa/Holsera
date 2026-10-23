@@ -43,7 +43,7 @@ export default function DemoPage() {
           <div className="rule-grid rule-grid--2">
             <article className="rule-cell">
               <span className="rule-cell__index">01</span>
-              <h3>What it demonstrates</h3>
+              <h2>What it demonstrates</h2>
               <p>
                 How explicit states, actor-attributed evidence and mechanical release
                 conditions turn “trust me” into an inspectable record — and how a blocked
@@ -52,7 +52,7 @@ export default function DemoPage() {
             </article>
             <article className="rule-cell">
               <span className="rule-cell__index">02</span>
-              <h3>What it does not demonstrate</h3>
+              <h2>What it does not demonstrate</h2>
               <p>
                 A live product. No payments are processed, no funds are held or moved, no
                 identity is verified, and no data leaves your browser. Every capability

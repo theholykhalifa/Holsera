@@ -7,6 +7,7 @@ import { LogoLockup } from '@/components/Logo';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
 import { site } from '@/lib/site.config';
+import { threePillars } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'About Holsera',
@@ -138,6 +139,43 @@ export default function AboutPage() {
               </div>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* ---------- Three-pillar positioning ---------- */}
+      <section className="band band--deep" aria-labelledby="pillars">
+        <div className="container">
+          <Reveal>
+            <SectionHeading
+              id="pillars"
+              eyebrow="What we are building"
+              title="Three pillars, one system"
+              lead="Holsera positions on three pillars. Each describes a layer of the same transaction workflow — and each is a design target for a product in development."
+            />
+          </Reveal>
+          <div className="pillar-grid">
+            {threePillars.map((p, i) => (
+              <Reveal key={p.name} delay={i * 60}>
+                <article className="figure-card">
+                  <span className="rule-cell__index">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{p.name}</h3>
+                  <p>{p.what}</p>
+                  <ul className="ticks" style={{ marginTop: '0.5rem' }}>
+                    {p.includes.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal>
+            <div className="callout" style={{ marginTop: '2rem' }}>
+              <strong>Design-stage positioning.</strong> These pillars describe what
+              Holsera is being engineered to provide. Statuses are stated per capability
+              across this site; no pillar implies a shipped feature.
+            </div>
+          </Reveal>
         </div>
       </section>
 
