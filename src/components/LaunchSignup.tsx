@@ -4,13 +4,19 @@ import { useState, type FormEvent } from 'react';
 import Reveal from './Reveal';
 
 /**
- * Pre-launch email capture band.
- * Same honesty contract as ContactForm: it validates locally and NEVER
+ * Waitlist form used by the launch band and the early-access page.
+ * Mirrors ContactForm's honesty contract: validates locally and NEVER
  * transmits or stores anything — there is intentionally no backend. The
- * submit result states this plainly. Do not wire real submission until
+ * submit result states this plainly. Do not wire real submission until a
  * backend, security controls, testing and legal authorisation exist.
  */
-export default function LaunchSignup() {
+export default function LaunchSignup({
+  ctaLabel = 'Notify me',
+  note,
+}: {
+  ctaLabel?: string;
+  note?: string;
+} = {}) {
   const [error, setError] = useState('');
   const [sent, setSent] = useState(false);
 
@@ -61,7 +67,7 @@ export default function LaunchSignup() {
                   aria-label="Email address"
                 />
                 <button type="submit" className="btn btn--primary">
-                  Notify me
+                  {ctaLabel}
                 </button>
               </form>
               {error ? (
@@ -73,8 +79,8 @@ export default function LaunchSignup() {
           )}
 
           <p className="form-note signup__note">
-            Demo form — no data is transmitted or stored. Never send financial or identity
-            details here.
+            {note ??
+              'Demo form — no data is transmitted or stored. Never send financial or identity details here.'}
           </p>
         </Reveal>
       </div>

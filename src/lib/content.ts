@@ -849,6 +849,68 @@ export const devPreviewNote =
   'This is a description of interfaces being designed — not documentation of a shipped API. No endpoint is live, no key has been issued, and nothing on this page can be called today. It exists so integrators can tell us whether the shape matches what their systems need, which is exactly the kind of feedback that shapes what gets built.';
 
 /* ------------------------------------------------------------------ */
+/* Early-access program                                                 */
+/* ------------------------------------------------------------------ */
+export interface EarlyAccessBenefit {
+  title: string;
+  text: string;
+}
+
+export const earlyAccessBenefits: EarlyAccessBenefit[] = [
+  {
+    title: 'Shape the workflow before it hardens',
+    text:
+      'Early participants see the transaction model while it is still a design, not a shipped product. Feedback at this stage actually changes what gets built — later, the cost of change only goes up.',
+  },
+  {
+    title: 'A direct line to the person building it',
+    text:
+      'Holsera is built by one founder. There is no support queue between you and the decision-maker — questions and edge cases go straight to the person writing the code.',
+  },
+  {
+    title: 'Transparency by default',
+    text:
+      'Participants get the same honest status labels this site uses: what is planned, what is in development, and what is genuinely available. No feature is described as shipped before it is.',
+  },
+  {
+    title: 'Priority when access opens',
+    text:
+      'When a working preview becomes available, early-access members are contacted first. This is a stated intention of the program, not a claim about a date or a queue position.',
+  },
+];
+
+export interface EarlyAccessExpectation {
+  title: string;
+  text: string;
+}
+
+export const earlyAccessExpectations: EarlyAccessExpectation[] = [
+  {
+    title: 'This is a pre-launch program',
+    text:
+      'There is no product to log into yet. Joining means you will be told when a real preview exists — it does not grant access to something running today.',
+  },
+  {
+    title: 'No payment, no commitment',
+    text:
+      'The program is free and imposes no obligation. It is a way to stay in the loop and, if you choose, to tell us where trust breaks in your own transaction flows.',
+  },
+  {
+    title: 'Feedback is welcome, not required',
+    text:
+      'Some members will want to shape the product; others just want to know when it ships. Both are fine. Nothing you say is used as a testimonial or case study without asking you first.',
+  },
+  {
+    title: 'Your details are not stored yet',
+    text:
+      'This site has no backend, so the form below does not transmit or store anything. When a real endpoint is authorised, it will be stated clearly before any data is collected.',
+  },
+];
+
+export const earlyAccessNote =
+  'This page describes an early-access program for a product still in development. It does not promise a launch date, a preview date, a cohort size, or any feature. Nothing here should be read as a commitment beyond what is written above. No certifications, metrics, or customers are claimed.';
+
+/* ------------------------------------------------------------------ */
 /* Illustrative mockup data — clearly labelled as a mockup in the UI    */
 /* ------------------------------------------------------------------ */
 export const mockupTx = {
