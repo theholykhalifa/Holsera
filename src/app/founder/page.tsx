@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import CtaBand from '@/components/CtaBand';
+import Figure from '@/components/Figure';
 import Icon from '@/components/Icon';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
+import { buildStory, founderConvictions } from '@/lib/content';
+import { Branches } from '@lucasmarkes/hairline/react';
+
+const pad = (i: number) => String(i + 1).padStart(2, '0');
 
 export const metadata: Metadata = {
   title: 'Founder',
@@ -89,6 +94,31 @@ export default function FounderPage() {
         </div>
       </section>
 
+      {/* ---------- Design convictions ---------- */}
+      <section className="band" aria-labelledby="convictions">
+        <div className="container">
+          <Reveal>
+            <SectionHeading
+              id="convictions"
+              eyebrow="Convictions"
+              title="Four positions the product takes on purpose"
+              lead="These are not slogans. They are the design decisions the founder keeps returning to when a trade-off forces a choice."
+            />
+          </Reveal>
+          <div className="rule-grid rule-grid--2">
+            {founderConvictions.map((c, i) => (
+              <Reveal key={c.title} delay={(i % 2) * 60}>
+                <article className="rule-cell">
+                  <span className="rule-cell__index">{pad(i)}</span>
+                  <h3>{c.title}</h3>
+                  <p>{c.text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ---------- Long-form biography ---------- */}
       <section className="band band--soft" aria-labelledby="biography">
         <div className="container container--narrow">
@@ -138,6 +168,46 @@ export default function FounderPage() {
               </p>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- How it is being built ---------- */}
+      <section className="band band--tight" aria-labelledby="build-story">
+        <div className="container">
+          <div className="editorial">
+            <Reveal className="editorial__side">
+              <SectionHeading
+                id="build-story"
+                eyebrow="The build"
+                title="How Holsera is actually being built"
+              />
+              <div className="figure-frame">
+                <Figure
+                  F={Branches}
+                  hue="ice"
+                  label="Animated line drawing: branches diverging from a trunk and recombining, tracing the path a change takes through a system"
+                />
+                <span className="figure-frame__caption">
+                  One trunk, many branches — a single founder holding the whole system in
+                  view at once.
+                </span>
+              </div>
+            </Reveal>
+            <div className="stack">
+              {buildStory.map((para, i) => (
+                <Reveal key={i} delay={i * 70}>
+                  <p className="build-story__para">{para}</p>
+                </Reveal>
+              ))}
+              <Reveal>
+                <div className="callout" style={{ marginTop: '0.5rem' }}>
+                  <strong>Why this is stated openly.</strong> A solo founder is a real
+                  constraint with real trade-offs. Hiding it would be the first break in
+                  the trust this site is asking you to extend.
+                </div>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
 

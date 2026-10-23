@@ -528,6 +528,43 @@ export const threatModelNote =
   'This is a design-stage threat model: it describes what Holsera is being engineered to defend against, not controls that have been independently audited or certified. No certification, audit, or penetration-test result is claimed on this site.';
 
 /* ------------------------------------------------------------------ */
+/* Founder page — design convictions and the honest build story        */
+/* ------------------------------------------------------------------ */
+export interface Conviction {
+  title: string;
+  text: string;
+}
+
+export const founderConvictions: Conviction[] = [
+  {
+    title: 'Trust is engineered, not promised',
+    text:
+      'A trust claim with no mechanism behind it is marketing. The conviction driving Holsera is that trust should be a property of the system — produced by append-only records, dual control, and reasons a reviewer can reconstruct — not a sentence on a landing page.',
+  },
+  {
+    title: 'Say what is designed, built, and unknown',
+    text:
+      'Most product pages describe an imagined finished system. Holsera labels every capability as planned, in development, or available, and refuses to call anything available without proof. That discipline is the point, not a limitation.',
+  },
+  {
+    title: 'The weak party in a transaction deserves the stronger default',
+    text:
+      'Fraud targets whoever has less leverage and less context. The workflow is designed so the cautious path — evidence recorded, release gated, reasons stated — is also the easy path, so protection does not depend on the wary party winning an argument.',
+  },
+  {
+    title: 'One person building it is a fact, not a facade',
+    text:
+      'Holsera is a team of one. No invented customers, no headcount theatre. Every part of it is built by the founder, and the site says so plainly.',
+  },
+];
+
+export const buildStory: string[] = [
+  'Holsera began with a recurring observation: online transactions between parties who will never meet in person break down in the same few places every time — unclear commitments, unverifiable evidence, and a release decision that no one can reconstruct after the fact.',
+  'The early work was not a product but a model: what a transaction record would have to contain, who would be allowed to change it, and how a blocked decision could explain itself instead of failing silently. That model became the state engine and audit-log design described on the architecture page.',
+  'It is still built by one person. The founder writes the code, designs the interface, and maintains this site. The pre-launch status is deliberate — shipping a claimable product is the only thing that lets the labels change from planned to available.',
+];
+
+/* ------------------------------------------------------------------ */
 /* Illustrative mockup data — clearly labelled as a mockup in the UI    */
 /* ------------------------------------------------------------------ */
 export const mockupTx = {

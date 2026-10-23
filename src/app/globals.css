@@ -3265,3 +3265,13 @@ hr {
 }
 .threat-scenario__vector, .threat-scenario__response { margin: 0; font-size: 0.9rem; line-height: 1.55; color: var(--text-2); }
 .threat-scenario__response { color: var(--text-1); }
+
+
+/* ---------- 28. Founder build story ---------- */
+.build-story__para {
+  margin: 0 0 1.1rem;
+  color: var(--text-2);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+.build-story__para:last-of-type { margin-bottom: 0; }
