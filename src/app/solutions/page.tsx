@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
+import Icon from '@/components/Icon';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
-import { alternatives, alternativesNote, segments } from '@/lib/content';
+import StatusBadge from '@/components/StatusBadge';
+import Link from 'next/link';
+import { alternatives, alternativesNote, industrySolutions, segments } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Solutions',
@@ -78,6 +81,35 @@ export default function SolutionsPage() {
             <strong>No invented social proof.</strong> This site publishes no customer
             logos, testimonials, metrics, or case studies. Customer-story pages will be
             added only when real, attributable material exists.
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- Detailed industry solutions ---------- */}
+      <section className="band" aria-labelledby="by-industry">
+        <div className="container">
+          <SectionHeading
+            id="by-industry"
+            eyebrow="By industry"
+            title="Detailed solutions, one industry at a time"
+            lead="Each page below goes deeper on a single segment: how trust breaks there, how the workflow is designed to handle it, and what it is explicitly not yet."
+          />
+          <div className="industry-grid">
+            {industrySolutions.map((s, i) => (
+              <Reveal key={s.slug} delay={(i % 2) * 60}>
+                <Link href={`/solutions/${s.slug}/`} className="industry-card">
+                  <div className="industry-card__head">
+                    <h3>{s.title}</h3>
+                    <StatusBadge status={s.status} />
+                  </div>
+                  <p>{s.lead}</p>
+                  <span className="industry-card__cta">
+                    Read the full solution
+                    <Icon name="arrow-right" size={16} />
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>

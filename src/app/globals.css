@@ -3317,3 +3317,88 @@ hr {
 /* ---------- 30. Developer preview waitlist ---------- */
 .dev-waitlist { margin-inline: auto; max-width: 520px; }
 .dev-waitlist .form-note { text-align: center; }
+
+
+/* ---------- 31. Industry solution pages ---------- */
+.crumb {
+  color: var(--brand-bright, #7db4ff);
+  text-decoration: none;
+}
+.crumb:hover { text-decoration: underline; }
+
+.industry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+@media (max-width: 720px) { .industry-grid { grid-template-columns: 1fr; } }
+
+.industry-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+  padding: 1.5rem 1.5rem 1.6rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.industry-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+.industry-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.industry-card__head h3 { margin: 0; font-size: 1.08rem; color: var(--text-1); }
+.industry-card p { margin: 0; color: var(--text-2); font-size: 0.92rem; line-height: 1.6; }
+.industry-card__cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--brand-bright, #7db4ff);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.industry-card:hover .industry-card__cta { gap: 0.6rem; }
+
+.workflow-steps {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.workflow-step {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--brand-bright, #7db4ff);
+  border-radius: 12px;
+  background: var(--bg);
+}
+.workflow-step__num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-3);
+  padding-top: 0.2rem;
+}
+.workflow-step h3 { margin: 0 0 0.3rem; font-size: 1rem; color: var(--text-1); }
+.workflow-step p { margin: 0; color: var(--text-2); font-size: 0.9rem; line-height: 1.55; }
+
+.not-yet {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: 12px;
+}
+.not-yet .mono-label { display: block; margin-bottom: 0.75rem; color: var(--text-3); }
+
+.ticks--warn li::before { color: var(--badge-unconfirmed-fg, #ddb06a); }

@@ -243,6 +243,195 @@ export const segments: Segment[] = [
 ];
 
 /* ------------------------------------------------------------------ */
+/* Industry solution pages (one detailed page per segment)             */
+/* ------------------------------------------------------------------ */
+export interface IndustrySolution {
+  slug: string;
+  title: string;
+  lead: string;
+  challenge: string;
+  status: Status;
+  heroFigure: 'Settle' | 'Relay' | 'Patch' | 'Hub' | 'Rail' | 'Query';
+  heroHue: 'blue' | 'green' | 'amber' | 'ice';
+  figureCaption: string;
+  painPoints: { title: string; text: string }[];
+  workflow: { step: string; detail: string }[];
+  outcomes: string[];
+  notYet: string[];
+}
+
+export const industrySolutions: IndustrySolution[] = [
+  {
+    slug: 'marketplaces',
+    title: 'Trust infrastructure for marketplaces',
+    lead: 'Your buyers and sellers do not trust each other — they trust you. Every disputed transaction lands on your support team, your margins, and your reputation.',
+    challenge:
+      'When a platform only sees the payment and not the delivery, it adjudicates disputes with incomplete evidence. The record of what actually happened is scattered across messages, listings, and payment receipts.',
+    status: 'planned',
+    heroFigure: 'Settle',
+    heroHue: 'blue',
+    figureCaption:
+      'Tiles sliding into an ordered tree around a hub — the shape of many scattered transactions resolving into one shared record.',
+    painPoints: [
+      {
+        title: 'Non-delivery and chargeback disputes',
+        text: 'A buyer claims non-delivery; a seller claims the buyer is defrauding them. Without a delivery-linked record, the platform guesses — and often absorbs the loss to keep both sides.',
+      },
+      {
+        title: 'Onboarding parties they have never worked with',
+        text: 'Every new seller is an unknown. Trust signals help, but reputation scores do not reconstruct what happened in a specific transaction when it goes wrong.',
+      },
+      {
+        title: 'Manual escalation of contested transactions',
+        text: 'Contested transactions become support tickets, and each one is rebuilt by hand from message threads — slow for the parties and expensive for the platform.',
+      },
+    ],
+    workflow: [
+      { step: 'Order placed', detail: 'The transaction opens with its agreement, price, and delivery terms attached as the record both sides see.' },
+      { step: 'Funds committed', detail: 'Payment is committed under the agreement terms — held by a licensed provider, not by Holsera.' },
+      { step: 'Delivery confirmed', detail: 'Carrier or completion attestation is attached by reference, with an integrity hash over the evidence.' },
+      { step: 'Release conditions met', detail: 'The release engine evaluates the agreement mechanically and releases — or blocks with a stated reason.' },
+    ],
+    outcomes: [
+      'A per-order record both buyer and seller can inspect — not a support thread only your team can read.',
+      'Delivery-linked release conditions, so payment follows verified delivery rather than a promise.',
+      'Contested transactions arrive with structured evidence attached, instead of being reconstructed by hand.',
+    ],
+    notYet: [
+      'Holsera does not yet process real marketplace transactions — this is a design description.',
+      'It does not replace your existing payments; money still moves through licensed providers.',
+      'Delivery attestation depends on carrier and provider integrations that are still planned.',
+    ],
+  },
+  {
+    slug: 'b2b-commerce',
+    title: 'Milestone workflows for B2B commerce',
+    lead: 'High-value orders, payment terms spread across email and ERP, and a reconciliation process that only starts after something already disagrees.',
+    challenge:
+      'In B2B, the transaction record lives in several systems at once — a purchase order in one, an invoice in another, delivery notes in email. When they disagree, the cost is discovered late and settled by argument.',
+    status: 'planned',
+    heroFigure: 'Relay',
+    heroHue: 'green',
+    figureCaption:
+      'A path lighting up hop by hop — each milestone recorded as it is reached, not reconstructed after the fact.',
+    painPoints: [
+      {
+        title: 'Payment terms spread across email and ERP',
+        text: 'The terms that govern a release often exist in three places and match in none of them. When a milestone is reached, nobody is certain which version governs.',
+      },
+      {
+        title: 'Slow reconciliation when records disagree',
+        text: 'Disagreement between systems is found late, when payment is already due — and resolving it means reconstructing what each system believed and when.',
+      },
+      {
+        title: 'Exposure when a counterparty defaults',
+        text: 'Without a clear, agreed record of what was delivered and what is owed, a default becomes a dispute with no shared starting point.',
+      },
+    ],
+    workflow: [
+      { step: 'Agreement recorded', detail: 'Milestones, terms, and hold conditions are attached as the release rules — the same source both parties see.' },
+      { step: 'Milestone reached', detail: 'Each milestone is confirmed with its evidence recorded as an event, attributed and timestamped.' },
+      { step: 'Conditions held or released', detail: 'Payment releases per milestone as conditions are satisfied; unmet conditions hold the next tranche with a stated reason.' },
+      { step: 'Review bundle exported', detail: 'The full sequence — agreements, evidence, decisions — is exportable as a reconstructable record for reconciliation or audit.' },
+    ],
+    outcomes: [
+      'One reconstructable record per transaction, instead of four systems that must be reconciled by hand.',
+      'Release conditions tied to the agreement itself, so payment follows verified milestones.',
+      'A shared starting point when a counterparty disputes or defaults — both sides read the same record.',
+    ],
+    notYet: [
+      'Holsera does not yet run production B2B workflows — this is a design description.',
+      'ERP and invoicing integrations are planned, not connected today.',
+      'It does not provide trade credit, insurance, or legal advice on payment terms.',
+    ],
+  },
+  {
+    slug: 'service-gig',
+    title: 'Verified progress for service & gig work',
+    lead: 'Work delivered over time, payment that should follow verified progress, and disputes that usually come down to two different versions of what was agreed.',
+    challenge:
+      'In service and gig work, scope shifts as the work happens. When payment depends on completion and completion is contested, the parties have no shared record of what changed or what was actually delivered.',
+    status: 'planned',
+    heroFigure: 'Patch',
+    heroHue: 'amber',
+    figureCaption:
+      'A patch panel where the cable under the pointer lifts — each connection made deliberately, each one visible and reversible.',
+    painPoints: [
+      {
+        title: 'Disputes over scope and completion',
+        text: 'The worker says the scope grew; the client says the original scope was not finished. Without a recorded agreement and its changes, the dispute is unresolvable from evidence.',
+      },
+      {
+        title: 'Partial deliveries and revisions',
+        text: 'Work arrives in pieces, and each revision changes what "done" means. A single payment decision at the end cannot see the history that led there.',
+      },
+      {
+        title: 'Trust between newly matched parties',
+        text: 'Newly matched parties have no history with each other. The cautious path — pay only on full completion — hurts the worker; the trusting path — pay upfront — risks the client.',
+      },
+    ],
+    workflow: [
+      { step: 'Scope agreed', detail: 'The engagement opens with its scope and milestones recorded as the shared reference both sides work from.' },
+      { step: 'Progress confirmed', detail: 'Each delivery or milestone is confirmed and recorded as an attributed event, so revisions are visible rather than argued.' },
+      { step: 'Partial release', detail: 'Payment can release against verified milestones, so the worker is not paid only at the very end and the client is not exposed upfront.' },
+      { step: 'Dispute evidence structured', detail: 'A contested engagement arrives with its agreement, confirmations, and changes already structured — not reconstructed from messages.' },
+    ],
+    outcomes: [
+      'Scope and its changes recorded as they happen, so completion disputes have evidence instead of memory.',
+      'Milestone-based release, so neither party carries all the risk to the very end.',
+      'A clear state both sides see, so newly matched parties do not have to rely on reputation alone.',
+    ],
+    notYet: [
+      'Holsera does not yet run production service workflows — this is a design description.',
+      'It does not verify work quality or arbitrate disputes — it structures the evidence and holds the release logic.',
+      'Payment still moves through licensed providers; Holsera does not hold funds.',
+    ],
+  },
+  {
+    slug: 'fintech-builders',
+    title: 'Transaction-trust primitives for FinTech builders',
+    lead: 'You are embedding escrow, review, and release logic into your own product — and discovering that the hard part is not moving money, it is reconstructing what happened.',
+    challenge:
+      'Teams building transaction flows find that payment integration is the easy half. The hard half is the state machine, the evidence trail, the review queue, and the audit record — the parts that only matter when something goes wrong.',
+    status: 'planned',
+    heroFigure: 'Hub',
+    heroHue: 'ice',
+    figureCaption:
+      'Tiles arranged around a central hub — composable primitives you wire into your own flow, rather than a flow imposed on you.',
+    painPoints: [
+      {
+        title: 'Building escrow and review logic from scratch',
+        text: 'Every team rebuilding a state machine for releases, holds, and exceptions is solving the same problem — and the failure modes only surface in production.',
+      },
+      {
+        title: 'Keeping compliance evidence organised',
+        text: 'Evidence that would satisfy a reviewer is scattered across logs and storage buckets, assembled only when it is urgently needed.',
+      },
+      {
+        title: 'Speed versus control trade-offs',
+        text: 'Shipping fast means hard-coding release rules; adding control later means re-architecting the flow your product already depends on.',
+      },
+    ],
+    workflow: [
+      { step: 'Define the workflow', detail: 'Compose transaction states and release conditions declaratively, instead of hard-coding them into application logic.' },
+      { step: 'Subscribe to events', detail: 'Every state change emits a signed, replayable event, so your systems stay in sync without polling the transaction record.' },
+      { step: 'Evaluate policy mechanically', detail: 'Release rules are evaluated against the record, and a blocked transition returns its reason instead of failing silently.' },
+      { step: 'Export the audit trail', detail: 'Each transaction carries an append-only, actor-attributed history you can export as a review bundle.' },
+    ],
+    outcomes: [
+      'Composable workflow primitives (planned API), so you assemble a flow instead of rebuilding a state machine.',
+      'An event stream for every state change, designed to be signed and replayable.',
+      'Policy over hard-coded rules, so adding control does not mean re-architecting what already ships.',
+    ],
+    notYet: [
+      'No API is live today — see the developer preview for the shape being designed.',
+      'These are design targets for a product in development, not documentation of a shipped library.',
+      'Holsera does not provide legal, compliance, or regulatory advice.',
+    ],
+  },
+];
+
+/* ------------------------------------------------------------------ */
 /* Platform building blocks                                            */
 /* ------------------------------------------------------------------ */
 export interface PlatformModule {
