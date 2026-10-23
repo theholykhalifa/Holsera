@@ -5,7 +5,22 @@ import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
 import StatusBadge from '@/components/StatusBadge';
 import { Vault } from '@lucasmarkes/hairline/react';
-import { noClaimsNote, securityPosture, securityPrinciples } from '@/lib/content';
+import {
+  assets,
+  noClaimsNote,
+  securityPosture,
+  securityPrinciples,
+  threatActors,
+  threatModelNote,
+  threatScenarios,
+  trustControls,
+} from '@/lib/content';
+
+const capabilityLabel: Record<string, string> = {
+  low: 'Low capability',
+  moderate: 'Moderate capability',
+  high: 'High capability',
+};
 
 export const metadata: Metadata = {
   title: 'Security & Trust',
@@ -115,6 +130,131 @@ export default function SecurityPage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- Threat model: what the design defends against ---------- */}
+      <section className="band" aria-labelledby="threat-model">
+        <div className="container">
+          <Reveal>
+            <SectionHeading
+              id="threat-model"
+              eyebrow="Threat model"
+              title="What the design is meant to defend against"
+              lead="Before naming controls, it helps to name the threats. This is the design-stage picture of who might attack a transaction workflow, what they would be after, and how the system is being engineered to respond."
+            />
+          </Reveal>
+
+          {/* Assets */}
+          <Reveal>
+            <h3 className="threat-subhead">What is at stake</h3>
+          </Reveal>
+          <div className="rule-grid rule-grid--2">
+            {assets.map((a, i) => (
+              <Reveal key={a.asset} delay={(i % 2) * 60}>
+                <article className="rule-cell">
+                  <div className="threat-cell__head">
+                    <h3>{a.asset}</h3>
+                    <StatusBadge status={a.status} />
+                  </div>
+                  <p className="threat-cell__why">{a.why}</p>
+                  <p className="threat-cell__response">{a.handling}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Threat actors */}
+          <Reveal>
+            <h3 className="threat-subhead">Who might attack</h3>
+          </Reveal>
+          <div className="threat-actors">
+            {threatActors.map((t, i) => (
+              <Reveal key={t.actor} delay={(i % 4) * 60}>
+                <article className="threat-actor">
+                  <div className="threat-actor__head">
+                    <h3>{t.actor}</h3>
+                    <span
+                      className={`threat-capability threat-capability--${t.capability}`}
+                    >
+                      {capabilityLabel[t.capability]}
+                    </span>
+                  </div>
+                  <p className="threat-actor__motive">
+                    <span className="mono-label">Motive</span>
+                    {t.motive}
+                  </p>
+                  <p className="threat-actor__realistic">
+                    <span className="mono-label">Realistic? </span>
+                    {t.realistic}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Scenarios → responses */}
+          <Reveal>
+            <h3 className="threat-subhead">Scenarios and the designed response</h3>
+          </Reveal>
+          <div className="threat-scenarios">
+            {threatScenarios.map((s, i) => (
+              <Reveal key={s.scenario} delay={(i % 2) * 60}>
+                <article className="threat-scenario">
+                  <div className="threat-scenario__head">
+                    <span className="threat-scenario__num">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3>{s.scenario}</h3>
+                    <StatusBadge status={s.status} />
+                  </div>
+                  <p className="threat-scenario__vector">
+                    <span className="mono-label">Vector</span>
+                    {s.vector}
+                  </p>
+                  <p className="threat-scenario__response">
+                    <span className="mono-label">Design response</span>
+                    {s.designResponse}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Controls coverage */}
+          <Reveal>
+            <h3 className="threat-subhead">Which designed controls cover them</h3>
+          </Reveal>
+          <Reveal>
+            <div className="table-wrap">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Control</th>
+                    <th scope="col">Covers</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {trustControls.map((c) => (
+                    <tr key={c.control}>
+                      <td>{c.control}</td>
+                      <td>{c.covers}</td>
+                      <td>
+                        <StatusBadge status={c.status} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="callout" style={{ marginTop: '2rem' }}>
+              <strong>Read this honestly.</strong> {threatModelNote}
             </div>
           </Reveal>
         </div>
