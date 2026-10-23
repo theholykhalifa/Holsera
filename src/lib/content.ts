@@ -621,6 +621,45 @@ export const alternativesNote =
   'These are generic categories of solutions, not named competitors, and the trade-offs above are Holsera’s own design framing rather than independently verified comparisons. Holsera is a product in development and does not yet process real transactions. Treat this as positioning, not a benchmark.';
 
 /* ------------------------------------------------------------------ */
+/* Developer preview                                                    */
+/* ------------------------------------------------------------------ */
+export interface DevSurface {
+  area: string;
+  shape: string;
+  status: Status;
+}
+
+export const devSurfaces: DevSurface[] = [
+  {
+    area: 'Transactions API',
+    shape:
+      'Create a transaction from an agreement, attach evidence by reference, read state and the reasons behind it. Idempotent by design so retries never double-apply a transition.',
+    status: 'planned',
+  },
+  {
+    area: 'Webhooks',
+    shape:
+      'Signed, replayable events on every state transition — payment committed, evidence attached, release held for review — so your systems stay in sync without polling.',
+    status: 'planned',
+  },
+  {
+    area: 'Policy / release rules',
+    shape:
+      'Declaratively express release conditions against the transaction record. The engine evaluates them mechanically and returns a reason when a transition is blocked.',
+    status: 'planned',
+  },
+  {
+    area: 'Audit & event log',
+    shape:
+      'An append-only, actor-attributed event history per transaction, exportable as a review bundle with integrity references over each entry.',
+    status: 'planned',
+  },
+];
+
+export const devPreviewNote =
+  'This is a description of interfaces being designed — not documentation of a shipped API. No endpoint is live, no key has been issued, and nothing on this page can be called today. It exists so integrators can tell us whether the shape matches what their systems need, which is exactly the kind of feedback that shapes what gets built.';
+
+/* ------------------------------------------------------------------ */
 /* Illustrative mockup data — clearly labelled as a mockup in the UI    */
 /* ------------------------------------------------------------------ */
 export const mockupTx = {

@@ -18,6 +18,7 @@ export const navLinks: NavLink[] = [
 export const footerSiteLinks: NavLink[] = [
   ...navLinks,
   { href: '/architecture/', label: 'Architecture' },
+  { href: '/developers/', label: 'Developer Preview' },
   { href: '/contact/', label: 'Contact' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/press/', label: 'Press Kit' },

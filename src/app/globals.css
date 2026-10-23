@@ -3312,3 +3312,8 @@ hr {
 .alt-card__row p { margin: 0; font-size: 0.9rem; line-height: 1.55; color: var(--text-2); }
 .alt-card__row--angle p { color: var(--text-1); }
 .alt-card__row--angle .mono-label { color: var(--brand-bright, #7db4ff); }
+
+
+/* ---------- 30. Developer preview waitlist ---------- */
+.dev-waitlist { margin-inline: auto; max-width: 520px; }
+.dev-waitlist .form-note { text-align: center; }
