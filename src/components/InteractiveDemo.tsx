@@ -90,9 +90,18 @@ export default function InteractiveDemo() {
             </button>
           ))}
         </div>
+        <div
+          className="demo-progress"
+          aria-hidden="true"
+        >
+          <div
+            className="demo-progress__fill"
+            style={{ width: `${((demoEvents.findIndex((e) => e.id === selectedId) + 1) / demoEvents.length) * 100}%` }}
+          />
+        </div>
 
         {/* Event detail */}
-        <div className="demo-detail" aria-live="polite">
+        <div className="demo-detail demo-detail--enter" key={selected.id} aria-live="polite">
           <div className="demo-detail__head">
             <div>
               <span className="mono-label">{selected.state}</span>
@@ -142,6 +151,7 @@ export default function InteractiveDemo() {
           <input
             id="demo-delivery"
             type="checkbox"
+            className="demo-switch"
             checked={deliveryConfirmed}
             onChange={(e) => setDeliveryConfirmed(e.target.checked)}
           />
@@ -153,7 +163,8 @@ export default function InteractiveDemo() {
 
         {/* Release verdict */}
         <div
-          className={`demo-verdict demo-verdict--${verdict.approved ? 'approved' : 'blocked'}`}
+          className={`demo-verdict demo-verdict--enter demo-verdict--${verdict.approved ? 'approved' : 'blocked'}`}
+          key={verdict.headline}
           aria-live="polite"
         >
           <div className="demo-verdict__head">

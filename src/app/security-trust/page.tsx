@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
+import Figure from '@/components/Figure';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
 import StatusBadge from '@/components/StatusBadge';
+import { Vault } from '@lucasmarkes/hairline/react';
 import { noClaimsNote, securityPosture, securityPrinciples } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -25,17 +27,34 @@ const notClaimed = [
 export default function SecurityPage() {
   return (
     <>
-      <section className="hero hero--page">
-        <div className="container">
-          <span className="eyebrow">Security &amp; Trust</span>
-          <h1>Trust is a claim that must be earned — so we state ours precisely</h1>
-          <p className="lead hero__lead">
-            This page separates three things clearly: the principles guiding Holsera’s
-            design, the posture we can honestly describe today, and the claims we are
-            deliberately not making.
-          </p>
-          <div className="callout" style={{ marginTop: '2rem', maxWidth: '70ch' }}>
-            <strong>Our standing rule.</strong> {noClaimsNote}
+            <section className="hero hero--page">
+        <div className="container hero__grid">
+          <div className="hero__copy">
+            <span className="eyebrow">Security & Trust</span>
+            <h1>Trust is a claim that must be earned — so we state ours precisely</h1>
+            <p className="lead hero__lead">
+              This page separates three things clearly: the principles guiding Holsera’s
+              design, the posture we can honestly describe today, and the claims we are
+              deliberately not making.
+            </p>
+            <div className="callout" style={{ marginTop: '2rem', maxWidth: '70ch' }}>
+              <strong>Our standing rule.</strong> {noClaimsNote}
+            </div>
+          </div>
+          <div className="hero__viz hero__viz--security">
+            <Reveal variant="scale" delay={120}>
+              <div className="figure-frame">
+                <Figure
+                  F={Vault}
+                  hue="ice"
+                  label="Animated line drawing: a vault door with a dial and three bolts — the pointer turns the dial and the bolts draw back on the correct combination"
+                />
+                <span className="figure-frame__caption">
+                  Security is a mechanism, not a mood — designed so the strong path is the
+                  default one.
+                </span>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

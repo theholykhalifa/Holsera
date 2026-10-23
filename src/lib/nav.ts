@@ -17,6 +17,7 @@ export const navLinks: NavLink[] = [
 /** Footer "Site" column — primary pages plus contact and resources. */
 export const footerSiteLinks: NavLink[] = [
   ...navLinks,
+  { href: '/architecture/', label: 'Architecture' },
   { href: '/contact/', label: 'Contact' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/press/', label: 'Press Kit' },

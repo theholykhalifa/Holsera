@@ -1,14 +1,17 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
+import Figure from '@/components/Figure';
 import Icon from '@/components/Icon';
 import LaunchSignup from '@/components/LaunchSignup';
 import MockupFrame from '@/components/MockupFrame';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
 import StatusBadge from '@/components/StatusBadge';
+import TrustStats from '@/components/TrustStats';
 import TrustNetwork from '@/components/TrustNetwork';
 import WorkflowStepper from '@/components/WorkflowStepper';
+import { Patch, Relay, Settle } from '@lucasmarkes/hairline/react';
 import {
   capabilities,
   capabilityFootnote,
@@ -120,39 +123,79 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- The solution: editorial rows ---------- */}
+      {/* ---------- The cost of broken trust: animated stats ---------- */}
+      <TrustStats />
+
+      {/* ---------- The solution: three pillars with figures ---------- */}
       <section className="band" aria-labelledby="solution">
         <div className="container">
-          <div className="editorial">
-            <Reveal className="editorial__side">
-              <SectionHeading
-                id="solution"
-                eyebrow="The approach"
-                title="One workflow. One record. Shared truth."
-                lead="Holsera proposes replacing ad-hoc coordination with an explicit, rule-driven transaction workflow that both sides — and any reviewer — can inspect."
-              />
-              <div className="callout">
-                <strong>Design-stage description.</strong> These are the capabilities
-                Holsera is being engineered to provide. Nothing on this site processes
-                payments, holds funds, verifies identities, or collects sensitive
-                customer data.
-              </div>
+          <Reveal>
+            <SectionHeading
+              id="solution"
+              eyebrow="The approach"
+              title="One workflow. One record. Shared truth."
+              lead="Holsera proposes replacing ad-hoc coordination with an explicit, rule-driven transaction workflow that both sides — and any reviewer — can inspect."
+              center
+            />
+          </Reveal>
+          <div className="pillar-grid">
+            <Reveal className="pillar" delay={0}>
+              <article className="figure-card">
+                <div className="figure-card__viz">
+                  <Figure
+                    F={Settle}
+                    hue="blue"
+                    label="Animated line drawing: twelve crooked tiles slide into an ordered tree around a central hub as the pointer nears"
+                  />
+                </div>
+                <div className="figure-card__head">
+                  <h3>{solutionPillars[0].title}</h3>
+                  <StatusBadge status={solutionPillars[0].status} />
+                </div>
+                <p>{solutionPillars[0].text}</p>
+              </article>
             </Reveal>
-            <div className="list-rows">
-              {solutionPillars.map((pillar, i) => (
-                <Reveal key={pillar.title} delay={i * 60}>
-                  <div className="list-row">
-                    <span className="list-row__index">{pad(i)}</span>
-                    <div className="list-row__head">
-                      <h3>{pillar.title}</h3>
-                      <StatusBadge status={pillar.status} />
-                    </div>
-                    <p>{pillar.text}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            <Reveal className="pillar" delay={80}>
+              <article className="figure-card">
+                <div className="figure-card__viz">
+                  <Figure
+                    F={Relay}
+                    hue="green"
+                    label="Animated line drawing: a path of tiles lights up hop by hop from a hub to a leaf, tracing a route"
+                  />
+                </div>
+                <div className="figure-card__head">
+                  <h3>{solutionPillars[1].title}</h3>
+                  <StatusBadge status={solutionPillars[1].status} />
+                </div>
+                <p>{solutionPillars[1].text}</p>
+              </article>
+            </Reveal>
+            <Reveal className="pillar" delay={160}>
+              <article className="figure-card">
+                <div className="figure-card__viz">
+                  <Figure
+                    F={Patch}
+                    hue="amber"
+                    label="Animated line drawing: a patch panel where the cable under the pointer lifts and neighbouring cables lean away"
+                  />
+                </div>
+                <div className="figure-card__head">
+                  <h3>{solutionPillars[2].title}</h3>
+                  <StatusBadge status={solutionPillars[2].status} />
+                </div>
+                <p>{solutionPillars[2].text}</p>
+              </article>
+            </Reveal>
           </div>
+          <Reveal>
+            <div className="callout" style={{ marginTop: '2rem' }}>
+              <strong>Design-stage description.</strong> These are the capabilities
+              Holsera is being engineered to provide. Nothing on this site processes
+              payments, holds funds, verifies identities, or collects sensitive
+              customer data.
+            </div>
+          </Reveal>
         </div>
       </section>
 

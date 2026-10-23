@@ -1,16 +1,16 @@
 /**
- * Holsera site content — single source of truth for everything the
+ * Holsera site content â single source of truth for everything the
  * pages render that could change as the product matures.
  *
- * ┌─────────────────────────────────────────────────────────────────────┐
- * │ HONESTY RULES — keep these intact when editing:                     │
- * │ • Every capability/status below is a PLACEHOLDER pending team       │
- * │   confirmation. Nothing here may claim a certification, audit,      │
- * │   metric, customer, partner, or shipped feature without evidence.  │
- * │ • Status 'planned'      = design target, not built yet              │
- * │ • Status 'unconfirmed'  = nobody has confirmed this detail yet      │
- * │ • Status 'in-development'/'available' — only set with real proof    │
- * └─────────────────────────────────────────────────────────────────────┘
+ * âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+ * â HONESTY RULES â keep these intact when editing:                     â
+ * â â¢ Every capability/status below is a PLACEHOLDER pending team       â
+ * â   confirmation. Nothing here may claim a certification, audit,      â
+ * â   metric, customer, partner, or shipped feature without evidence.  â
+ * â â¢ Status 'planned'      = design target, not built yet              â
+ * â â¢ Status 'unconfirmed'  = nobody has confirmed this detail yet      â
+ * â â¢ Status 'in-development'/'available' â only set with real proof    â
+ * âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
  */
 
 export type Status = 'planned' | 'in-development' | 'available' | 'unconfirmed';
@@ -37,7 +37,7 @@ export const problemPoints: ProblemPoint[] = [
   },
   {
     title: 'Fragmented workflows',
-    text: 'Agreements live in email and chat, payments in one tool, and delivery proof in another — so the true state of a transaction is hard to reconstruct.',
+    text: 'Agreements live in email and chat, payments in one tool, and delivery proof in another â so the true state of a transaction is hard to reconstruct.',
   },
   {
     title: 'Fraud and dispute exposure',
@@ -61,7 +61,7 @@ export interface SolutionPillar {
 export const solutionPillars: SolutionPillar[] = [
   {
     title: 'Structured transaction workflows',
-    text: 'Every transaction moves through explicit, rule-driven states — agreed terms, checks, conditions, release — instead of scattered messages.',
+    text: 'Every transaction moves through explicit, rule-driven states â agreed terms, checks, conditions, release â instead of scattered messages.',
     status: 'planned',
   },
   {
@@ -71,12 +71,12 @@ export const solutionPillars: SolutionPillar[] = [
   },
   {
     title: 'Fraud signals, not fraud promises',
-    text: 'Configurable risk indicators surface anomalies for review — with reasons attached, never black-box verdicts.',
+    text: 'Configurable risk indicators surface anomalies for review â with reasons attached, never black-box verdicts.',
     status: 'planned',
   },
   {
     title: 'Escrow-style release logic',
-    text: 'Funds or authorizations are released only when agreed conditions are met — designed as hold-and-release rules, not as custody on this site.',
+    text: 'Funds or authorizations are released only when agreed conditions are met â designed as hold-and-release rules, not as custody on this site.',
     status: 'planned',
   },
 ];
@@ -98,7 +98,7 @@ export const capabilities: Capability[] = [
   },
   {
     title: 'Hold-and-release rules',
-    text: 'Define the conditions under which a transaction advances, holds, or returns — with every transition recorded.',
+    text: 'Define the conditions under which a transaction advances, holds, or returns â with every transition recorded.',
     status: 'planned',
   },
   {
@@ -113,7 +113,7 @@ export const capabilities: Capability[] = [
   },
   {
     title: 'Counterparty checks',
-    text: 'Planned hooks for identity and business verification through authorised providers — never self-hosted sensitive data collection.',
+    text: 'Planned hooks for identity and business verification through authorised providers â never self-hosted sensitive data collection.',
     status: 'planned',
   },
   {
@@ -124,7 +124,7 @@ export const capabilities: Capability[] = [
 ];
 
 export const capabilityFootnote =
-  'Holsera is pre-launch. Status labels above are maintained in the project source and updated as development progresses — no capability is presented as live unless marked Available.';
+  'Holsera is pre-launch. Status labels above are maintained in the project source and updated as development progresses â no capability is presented as live unless marked Available.';
 
 /* ------------------------------------------------------------------ */
 /* Transaction workflow (How It Works)                                 */
@@ -147,7 +147,7 @@ export const workflowSteps: WorkflowStep[] = [
   },
   {
     title: 'Checks evaluated',
-    text: 'Configurable rules run before anything moves: counterparty checks, workflow policy, and fraud signals — each result kept with its reasons.',
+    text: 'Configurable rules run before anything moves: counterparty checks, workflow policy, and fraud signals â each result kept with its reasons.',
     actor: 'Holsera trust layer',
     record: 'Check results + reasons',
     status: 'planned',
@@ -161,7 +161,7 @@ export const workflowSteps: WorkflowStep[] = [
   },
   {
     title: 'Release decision',
-    text: 'When conditions are met — or an authorised reviewer approves an exception — the release instruction is executed and logged.',
+    text: 'When conditions are met â or an authorised reviewer approves an exception â the release instruction is executed and logged.',
     actor: 'Reviewer / rules engine',
     record: 'Approval trail',
     status: 'planned',
@@ -263,7 +263,7 @@ export const platformModules: PlatformModule[] = [
   },
   {
     title: 'Trust & evidence layer',
-    text: 'Where checks, evidence, and the audit trail live — the shared source of truth for both counterparties.',
+    text: 'Where checks, evidence, and the audit trail live â the shared source of truth for both counterparties.',
     points: ['Append-only event log', 'Evidence capture per step', 'Reason codes on every decision'],
     status: 'planned',
   },
@@ -275,7 +275,7 @@ export const platformModules: PlatformModule[] = [
   },
   {
     title: 'Escrow-style release logic',
-    text: 'Hold-and-release rules that define when value may move — designed to connect to licensed providers, not to hold funds itself.',
+    text: 'Hold-and-release rules that define when value may move â designed to connect to licensed providers, not to hold funds itself.',
     points: ['Condition-based release', 'Dual-control exceptions', 'No custody on this site'],
     status: 'planned',
   },
@@ -308,7 +308,7 @@ export const securityPrinciples: SecurityPrinciple[] = [
   },
   {
     title: 'Encryption as a design requirement',
-    text: 'TLS for data in transit and encryption at rest are requirements the production system must satisfy before launch — not claims made here.',
+    text: 'TLS for data in transit and encryption at rest are requirements the production system must satisfy before launch â not claims made here.',
   },
   {
     title: 'Data minimisation',
@@ -316,11 +316,11 @@ export const securityPrinciples: SecurityPrinciple[] = [
   },
   {
     title: 'Auditability by default',
-    text: 'Every state change is an event with an actor, timestamp, and reason — so behaviour can be reconstructed, not argued about.',
+    text: 'Every state change is an event with an actor, timestamp, and reason â so behaviour can be reconstructed, not argued about.',
   },
   {
     title: 'Separation of duties',
-    text: 'Sensitive actions — like exception releases — are designed for dual control so no single actor can move a transaction alone.',
+    text: 'Sensitive actions â like exception releases â are designed for dual control so no single actor can move a transaction alone.',
   },
   {
     title: 'Secure development lifecycle',
@@ -337,17 +337,17 @@ export interface PostureRow {
 export const securityPosture: PostureRow[] = [
   {
     item: 'Independent security audit',
-    detail: '[Placeholder — no audit is claimed until a completed report exists]',
+    detail: '[Placeholder â no audit is claimed until a completed report exists]',
     status: 'unconfirmed',
   },
   {
     item: 'Certifications (e.g. SOC 2, ISO 27001)',
-    detail: '[Placeholder — none claimed; add only after certification is granted]',
+    detail: '[Placeholder â none claimed; add only after certification is granted]',
     status: 'unconfirmed',
   },
   {
     item: 'Penetration testing',
-    detail: '[Placeholder — scope and cadence to be confirmed]',
+    detail: '[Placeholder â scope and cadence to be confirmed]',
     status: 'unconfirmed',
   },
   {
@@ -357,12 +357,12 @@ export const securityPosture: PostureRow[] = [
   },
   {
     item: 'Bug bounty programme',
-    detail: '[Placeholder — to be confirmed]',
+    detail: '[Placeholder â to be confirmed]',
     status: 'unconfirmed',
   },
   {
     item: 'Data processing agreements',
-    detail: '[Placeholder — legal terms to be prepared with counsel]',
+    detail: '[Placeholder â legal terms to be prepared with counsel]',
     status: 'unconfirmed',
   },
 ];
@@ -371,7 +371,7 @@ export const noClaimsNote =
   'This site does not claim certifications, audits, licences, guarantees, or metrics that have not been independently verified and confirmed.';
 
 /* ------------------------------------------------------------------ */
-/* Illustrative mockup data — clearly labelled as a mockup in the UI    */
+/* Illustrative mockup data â clearly labelled as a mockup in the UI    */
 /* ------------------------------------------------------------------ */
 export const mockupTx = {
   id: 'TX-0042',
@@ -383,8 +383,82 @@ export const mockupTx = {
     { label: 'Release decision', chip: 'Blocked by conditions', tone: 'wait' },
   ],
   trail: [
-    'workflow.created — terms snapshot stored',
-    'policy.evaluated — 4 rules, 0 flags',
+    'workflow.created â terms snapshot stored',
+    'policy.evaluated â 4 rules, 0 flags',
     'awaiting counterparty confirmation',
   ],
 };
+
+/* ------------------------------------------------------------------ */
+/* Architecture page — the five designed layers                        */
+/* ------------------------------------------------------------------ */
+export interface ArchitectureLayer {
+  title: string;
+  status: Status;
+  scope: 'your systems' | 'holsera' | 'external';
+  text: string;
+  points: string[];
+}
+
+export const architectureLayers: ArchitectureLayer[] = [
+  {
+    title: 'Application & API integration layer',
+    status: 'planned',
+    scope: 'holsera',
+    text: 'The surface your software talks to. Your product keeps its own interfaces and data stores; the integration layer exposes transaction state, evidence references and decisions to the systems you already run.',
+    points: [
+      'API-first: every workflow action available as an authenticated call (planned)',
+      'Webhook events for state transitions, with signed payloads (planned)',
+      'Idempotent operations, so retries never double-apply a state change (design target)',
+      'Evidence passed by reference — documents stay in your storage, Holsera records their integrity hash (design target)',
+    ],
+  },
+  {
+    title: 'Transaction state & policy engine',
+    status: 'planned',
+    scope: 'holsera',
+    text: 'The core state machine. Each transaction moves through explicit states under the conditions defined in the agreement, and every transition records the actor, the reason and the rule evaluation that allowed it.',
+    points: [
+      'Per-agreement state models, not one hard-coded flow (design target)',
+      'Declarative release conditions evaluated mechanically against the record (design target)',
+      'Blocked transitions state their reason — no silent failures (design target)',
+      'Deterministic replay: the sequence of states can be reconstructed from the log (design target)',
+    ],
+  },
+  {
+    title: 'Evidence & audit-log layer',
+    status: 'planned',
+    scope: 'holsera',
+    text: 'One append-only home for what happened. Attachments, confirmations and evaluations are recorded with actor, timestamp and integrity references, so any reviewer can reconstruct a transaction end to end.',
+    points: [
+      'Append-only event log per transaction (design target)',
+      'Actor-attributed: every record answers "who" and "why" (design target)',
+      'Integrity hashes over evidence, so tampering is detectable (design target)',
+      'Exportable audit bundle for dispute or compliance review (planned)',
+    ],
+  },
+  {
+    title: 'Risk-signal evaluation & human review',
+    status: 'planned',
+    scope: 'holsera',
+    text: 'Signals explain themselves. Automated checks surface anomalies with reasons, and anything uncertain routes to a human review queue — with the decision and its justification written back into the record.',
+    points: [
+      'Explainable signals: each flag carries the data that triggered it (design target)',
+      'Human review queue for flagged transitions (planned)',
+      'Decisions recorded with reviewer, rationale and evidence consulted (design target)',
+      'No silent auto-rejections — a held transaction is a visible state, not a dead end (design target)',
+    ],
+  },
+  {
+    title: 'External payment & verification providers',
+    status: 'planned',
+    scope: 'external',
+    text: 'Holsera is designed to orchestrate — not replace — regulated services. Payment rails, identity verification and delivery attestation stay with authorised third parties, connected through the integration layer when it exists.',
+    points: [
+      'Payment commitment and settlement remain with licensed providers (design principle)',
+      'Identity verification via authorised KYC providers (planned)',
+      'Carrier / delivery attestations attached as evidence by reference (planned)',
+      'Provider actions recorded as first-class events in the audit log (design target)',
+    ],
+  },
+];

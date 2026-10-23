@@ -73,16 +73,19 @@ function ArchitectureConcept() {
 
             {/* Providers */}
             <rect x="598" y="48" width="158" height="224" rx="12" fill="var(--bg-soft)" stroke="var(--line-strong)" strokeWidth="1.2" strokeDasharray="6 5" />
-            <text x="677" y="80" textAnchor="middle" fontSize="13" fontWeight="600" style={{ fill: 'var(--text-2)' }}>
+            <text x="677" y="76" textAnchor="middle" fontSize="13" fontWeight="600" style={{ fill: 'var(--text-2)' }}>
               Connected providers
             </text>
-            <text x="677" y="132" textAnchor="middle" fontSize="12.5" style={{ fill: 'var(--text-3)' }}>
-              Payment rails (planned)
+            <text x="677" y="94" textAnchor="middle" fontSize="10.5" style={{ fill: 'var(--text-3)' }}>
+              (planned connections)
             </text>
-            <text x="677" y="172" textAnchor="middle" fontSize="12.5" style={{ fill: 'var(--text-3)' }}>
-              Identity providers (planned)
+            <text x="677" y="132" textAnchor="middle" fontSize="12" style={{ fill: 'var(--text-3)' }}>
+              Payment rails
             </text>
-            <text x="677" y="212" textAnchor="middle" fontSize="12.5" style={{ fill: 'var(--text-3)' }}>
+            <text x="677" y="172" textAnchor="middle" fontSize="12" style={{ fill: 'var(--text-3)' }}>
+              Identity / KYC
+            </text>
+            <text x="677" y="212" textAnchor="middle" fontSize="12" style={{ fill: 'var(--text-3)' }}>
               Ledger / export
             </text>
           </svg>
