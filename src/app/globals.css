@@ -3275,3 +3275,40 @@ hr {
   line-height: 1.65;
 }
 .build-story__para:last-of-type { margin-bottom: 0; }
+
+
+/* ---------- 29. Alternatives comparison (solutions) ---------- */
+.alt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+@media (max-width: 900px) { .alt-grid { grid-template-columns: 1fr; } }
+
+.alt-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+  padding: 1.4rem 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  height: 100%;
+  transition: border-color 0.2s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.alt-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+.alt-card__cat {
+  margin: 0;
+  font-size: 1.05rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+.alt-card__row { display: flex; flex-direction: column; gap: 0.3rem; }
+.alt-card__row p { margin: 0; font-size: 0.9rem; line-height: 1.55; color: var(--text-2); }
+.alt-card__row--angle p { color: var(--text-1); }
+.alt-card__row--angle .mono-label { color: var(--brand-bright, #7db4ff); }

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import CtaBand from '@/components/CtaBand';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
-import { segments } from '@/lib/content';
+import { alternatives, alternativesNote, segments } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Solutions',
@@ -78,6 +78,43 @@ export default function SolutionsPage() {
             <strong>No invented social proof.</strong> This site publishes no customer
             logos, testimonials, metrics, or case studies. Customer-story pages will be
             added only when real, attributable material exists.
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- How Holsera compares (by category) ---------- */}
+      <section className="band band--soft" aria-labelledby="alternatives">
+        <div className="container">
+          <SectionHeading
+            id="alternatives"
+            eyebrow="The landscape"
+            title="How this differs from what already exists"
+            lead="Most existing tools each solve one slice — moving money, holding an agreement, scoring reputation, reporting after the fact. The comparison below is by category, because Holsera is not trying to out-feature any single product."
+          />
+          <div className="alt-grid">
+            {alternatives.map((alt, i) => (
+              <Reveal key={alt.category} delay={(i % 3) * 60}>
+                <article className="alt-card">
+                  <h3 className="alt-card__cat">{alt.category}</h3>
+                  <div className="alt-card__row">
+                    <span className="mono-label">Best for</span>
+                    <p>{alt.bestFor}</p>
+                  </div>
+                  <div className="alt-card__row">
+                    <span className="mono-label">Where it leaves a gap</span>
+                    <p>{alt.gap}</p>
+                  </div>
+                  <div className="alt-card__row alt-card__row--angle">
+                    <span className="mono-label">Holsera’s angle</span>
+                    <p>{alt.holseraAngle}</p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="callout" style={{ marginTop: '2.5rem' }}>
+            <strong>Read this as positioning.</strong> {alternativesNote}
           </div>
         </div>
       </section>

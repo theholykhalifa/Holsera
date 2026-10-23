@@ -565,6 +565,62 @@ export const buildStory: string[] = [
 ];
 
 /* ------------------------------------------------------------------ */
+/* Alternatives — generic categories, honest trade-offs, no naming      */
+/* ------------------------------------------------------------------ */
+export interface Alternative {
+  category: string;
+  bestFor: string;
+  gap: string;
+  holseraAngle: string;
+}
+
+export const alternatives: Alternative[] = [
+  {
+    category: 'Payment processors',
+    bestFor: 'Moving money once both sides already trust each other.',
+    gap:
+      'They settle a payment; they do not hold the agreement, the evidence, or the conditional release logic that decides whether payment should happen at all.',
+    holseraAngle:
+      'Holsera is designed to sit before settlement — carrying the workflow, the record, and the gated release — while money still moves through licensed providers.',
+  },
+  {
+    category: 'Traditional escrow services',
+    bestFor: 'A single high-value deal where a human agent can manage the release.',
+    gap:
+      'Release is often gated by a manual agent and a dispute process, so it is slow, hard to reconstruct, and does not scale to repeat or low-margin transactions.',
+    holseraAngle:
+      'Holsera proposes a declarative release engine: rules evaluated mechanically against an append-only record, with dual control reserved for genuine exceptions.',
+  },
+  {
+    category: 'Marketplace trust & safety tooling',
+    bestFor: 'Platforms policing many small transactions between strangers.',
+    gap:
+      'Trust signals (ratings, badges, fraud scoring) usually describe reputation; they do not give the two parties a shared, verifiable transaction record.',
+    holseraAngle:
+      'Holsera is designed to be the record itself — evidence, state, and reasons — rather than a reputation score layered on top of an opaque flow.',
+  },
+  {
+    category: 'Contract & e-signature tools',
+    bestFor: 'Getting an agreement signed and stored.',
+    gap:
+      'The signed document is a snapshot at signature time; what happens after — delivery, acceptance, exceptions — lives outside it and is rarely reconstructable.',
+    holseraAngle:
+      'Holsera treats the agreement as the source of release conditions that stay live for the life of the transaction, not a PDF that goes dormant once signed.',
+  },
+  {
+    category: 'Spending & treasury dashboards',
+    bestFor: 'Seeing where money went after it moved.',
+    gap:
+      'They are descriptive and post-hoc; they do not gate a transaction before value moves, and they carry no shared view for the counterparty.',
+    holseraAngle:
+      'Holsera is designed to act before the money moves — a decision layer both sides and any reviewer can inspect, not a report that explains the damage later.',
+  },
+];
+
+export const alternativesNote =
+  'These are generic categories of solutions, not named competitors, and the trade-offs above are Holsera’s own design framing rather than independently verified comparisons. Holsera is a product in development and does not yet process real transactions. Treat this as positioning, not a benchmark.';
+
+/* ------------------------------------------------------------------ */
 /* Illustrative mockup data — clearly labelled as a mockup in the UI    */
 /* ------------------------------------------------------------------ */
 export const mockupTx = {
