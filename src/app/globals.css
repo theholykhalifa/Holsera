@@ -1812,6 +1812,16 @@ hr {
   color: var(--text-3);
 }
 
+/* On the dark signup bands the default accent link lands at 4.26:1 — just
+   under WCAG AA. A lighter blue scoped to the note clears 4.5:1 there. */
+[data-theme='dark'] .form-note a {
+  color: #4a8af7;
+}
+
+[data-theme='dark'] .form-note a:hover {
+  color: #78aaf9;
+}
+
 .form-status {
   border: 1px solid var(--line);
   border-left: 2px solid var(--accent);
@@ -1956,10 +1966,31 @@ hr {
   margin: 0 auto 1rem;
 }
 
+/* Wrapper positions the decorative mail icon; the input keeps flex:1. */
+.signup__field {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.signup__icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  width: 1.05rem;
+  height: 1.05rem;
+  transform: translateY(-50%);
+  color: var(--text-3);
+  pointer-events: none;
+  transition: color 0.16s ease;
+}
+
 .signup__form input {
   flex: 1;
   min-width: 0;
   padding: 0.8rem 0.95rem;
+  padding-left: 2.6rem;
   border-radius: 10px;
   border: 1px solid var(--line-strong);
   background: var(--bg);
@@ -1978,6 +2009,11 @@ hr {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(26, 109, 244, 0.18);
+}
+
+/* The icon follows the field's focus accent — subtle, not distracting. */
+.signup__field:focus-within .signup__icon {
+  color: var(--accent);
 }
 
 .signup__form .btn {

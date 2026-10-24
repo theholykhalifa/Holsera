@@ -125,15 +125,32 @@ export default function SubscribeForm({
       ) : (
         <>
           <form className="signup__form" onSubmit={onSubmit} noValidate>
-            <input
-              id={`${inputId}-email`}
-              name="email"
-              type="email"
-              autoComplete="email"
-              placeholder={placeholder ?? 'you@company.com'}
-              aria-label={ariaLabel ?? 'Email address'}
-              required
-            />
+            <span className="signup__field">
+              {/* Decorative affordance only — the label is the aria-label. */}
+              <svg
+                className="signup__icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+                <path d="m3 7 8.2 5.6a1.5 1.5 0 0 0 1.6 0L21 7" />
+              </svg>
+              <input
+                id={`${inputId}-email`}
+                name="email"
+                type="email"
+                autoComplete="email"
+                placeholder={placeholder ?? 'you@company.com'}
+                aria-label={ariaLabel ?? 'Email address'}
+                required
+              />
+            </span>
             <button
               type="submit"
               className="btn btn--primary"
