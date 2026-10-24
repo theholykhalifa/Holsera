@@ -51,6 +51,47 @@ export const site = {
 
   /** Add real profiles here when they exist; the footer hides this list when empty. */
   social: [] as { label: string; href: string }[],
+
+  /**
+   * Mailing list (Buttondown).
+   * ------------------------------------------------------------------
+   * These forms submit to Buttondown's embed-subscribe endpoint, which is
+   * PUBLIC BY DESIGN and add-only: it can only append a subscriber, cannot
+   * read or delete the list, and needs no secret key. That is what makes it
+   * safe to call from a static site with no backend.
+   *
+   * `username` is your Buttondown account name (buttondown.com/<username>).
+   * While it is an empty string, every form on this site runs in DEMO mode:
+   * it validates locally and states, in the UI, that nothing is sent. Flipping
+   * it to a real username switches the same forms to live submission.
+   *
+   * TODO(owner): create the Buttondown account, then set `username` below.
+   */
+  mailingList: {
+    provider: 'Buttondown' as const,
+    /** TODO: set to your Buttondown username; '' keeps forms in demo mode. */
+    username: '',
+    /** Tag applied to every signup so source is attributable in Buttondown. */
+    tag: 'holsera-website',
+  },
+
+  /**
+   * Booking (Cal.com).
+   * ------------------------------------------------------------------
+   * "Book a call" opens your Cal.com scheduling page so a visitor picks a
+   * real time — no backend, no secret key (a Cal.com booking link is public).
+   * `username` is your Cal.com handle (cal.com/<username>). While it is an
+   * empty string, CalLink falls back to a normal link to /contact/.
+   *
+   * TODO(owner): create the Cal.com account, then set `username` below.
+   */
+  booking: {
+    provider: 'Cal.com' as const,
+    /** TODO: set to your Cal.com username; '' points booking links to /contact/. */
+    username: '',
+    /** Event type slug on your Cal.com account; every account has "30min". */
+    event: '30min',
+  },
 } as const;
 
 export type SiteConfig = typeof site;

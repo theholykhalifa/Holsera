@@ -115,10 +115,7 @@ export default function EarlyAccessPage() {
       </section>
 
       <div id="join">
-        <LaunchSignup
-          ctaLabel="Request early access"
-          note="Demo form — no data is transmitted or stored. When a real endpoint is authorised, this will say so before collecting anything."
-        />
+        <LaunchSignup ctaLabel="Request early access" source="early-access" />
       </div>
 
       <CtaBand

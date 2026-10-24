@@ -3414,3 +3414,53 @@ hr {
 .not-yet .mono-label { display: block; margin-bottom: 0.75rem; color: var(--text-3); }
 
 .ticks--warn li::before { color: var(--badge-unconfirmed-fg, #ddb06a); }
+
+
+/* ---------- 31. Live subscribe forms (Buttondown) + booking (Cal.com) ---------- */
+.subscribe {
+  width: 100%;
+}
+
+/* Honeypot: invisible to people and assistive tech, tempting to bots. */
+.subscribe__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Fallback POST target — visually gone, still rendered (a removed iframe
+   cannot receive the cross-document POST). */
+.subscribe__frame {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 0;
+  visibility: hidden;
+}
+
+.mono-inline {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  word-break: break-all;
+}
+
+/* Booking card (contact page) */
+.booking-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: 14px;
+  background: var(--bg-soft);
+  padding: 1.5rem 1.6rem;
+}
+
+.booking-card .btn {
+  flex: none;
+}

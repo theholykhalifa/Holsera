@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import CalLink from '@/components/CalLink';
 import ContactForm from '@/components/ContactForm';
 import Icon from '@/components/Icon';
 import Reveal from '@/components/Reveal';
@@ -19,6 +20,8 @@ const channels = [
   { icon: 'clock' as const, label: 'Response time', value: site.contact.responseTime },
 ];
 
+const bookingLive = site.booking.username.trim().length > 0;
+
 export default function ContactPage() {
   return (
     <>
@@ -33,6 +36,33 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
+
+      {/* Live scheduling — rendered only once a real Cal.com account exists. */}
+      {bookingLive ? (
+        <section className="band band--tight" aria-labelledby="book">
+          <div className="container container--narrow">
+            <Reveal>
+              <div className="booking-card">
+                <div>
+                  <span className="mono-label">Prefer to talk it through?</span>
+                  <h2 id="book" style={{ margin: '0.4rem 0 0.5rem', fontSize: '1.35rem' }}>
+                    Book a 30-minute call
+                  </h2>
+                  <p style={{ margin: 0, color: 'var(--text-2)', fontSize: '0.95rem' }}>
+                    Pick a time that works for you — the scheduler shows real
+                    availability, and the call is a plain conversation about your
+                    transaction workflow. No sales deck, no pressure.
+                  </p>
+                </div>
+                <CalLink className="btn btn--primary">
+                  Open the scheduler
+                  <Icon name="arrow-right" size={17} />
+                </CalLink>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
 
       <section className="band band--tight" aria-labelledby="contact-form">
         <div className="container">
