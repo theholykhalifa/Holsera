@@ -7,3 +7,4 @@ next-env.d.ts
 
 # Pre-existing plain-HTML site (Oct 2026) — kept on disk in legacy/, not published
 legacy/
+scripts/capture-cal-modal.log

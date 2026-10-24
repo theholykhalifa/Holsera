@@ -119,9 +119,11 @@ const faqs: FaqItem[] = [
     q: 'How can I contact you?',
     a: (
       <>
-        The <Link href="/contact/">Contact</Link> page describes the current channel status.
-        Its form is a front-end demonstration only — it does not transmit anything yet. A
-        real contact address will be published here when it exists.
+        The <Link href="/contact/">Contact</Link> page is the place to start. You can{' '}
+        <strong>book a 30-minute call</strong> directly through its Cal.com scheduler, or
+        use the message form below it. The message form is still a front-end demonstration
+        — it does not transmit anything yet. A real contact address will be published here
+        when it exists.
       </>
     ),
   },
@@ -177,7 +179,7 @@ const faqText: [string, string][] = [
   ],
   [
     'How can I contact you?',
-    'The Contact page describes the current channel status. Its form is a front-end demonstration only and does not transmit anything yet. A real contact address will be published when it exists.',
+    'The Contact page lets you book a 30-minute call through its Cal.com scheduler, or use the message form below it. The message form is a front-end demonstration only and does not transmit anything yet. A real contact address will be published when it exists.',
   ],
   [
     'Can I use the Holsera logo or brand assets?',

@@ -10,7 +10,7 @@ import Placeholder from '@/components/Placeholder';
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Talk to the Holsera team about transaction trust, secure workflows, fraud signals, or escrow-style release logic. Pre-launch — demo form, no data transmitted.',
+    'Talk to the Holsera team about transaction trust, secure workflows, fraud signals, or escrow-style release logic — book a 30-minute call or send a message. The message form is a pre-launch demo that transmits nothing.',
   alternates: { canonical: '/contact/' },
 };
 

@@ -64,13 +64,11 @@ export const site = {
    * While it is an empty string, every form on this site runs in DEMO mode:
    * it validates locally and states, in the UI, that nothing is sent. Flipping
    * it to a real username switches the same forms to live submission.
-   *
-   * TODO(owner): create the Buttondown account, then set `username` below.
    */
   mailingList: {
     provider: 'Buttondown' as const,
-    /** TODO: set to your Buttondown username; '' keeps forms in demo mode. */
-    username: '',
+    /** Verified live: buttondown.com/Holsera publishes "The Holsera Brief". */
+    username: 'Holsera',
     /** Tag applied to every signup so source is attributable in Buttondown. */
     tag: 'holsera-website',
   },
@@ -82,14 +80,12 @@ export const site = {
    * real time — no backend, no secret key (a Cal.com booking link is public).
    * `username` is your Cal.com handle (cal.com/<username>). While it is an
    * empty string, CalLink falls back to a normal link to /contact/.
-   *
-   * TODO(owner): create the Cal.com account, then set `username` below.
    */
   booking: {
     provider: 'Cal.com' as const,
-    /** TODO: set to your Cal.com username; '' points booking links to /contact/. */
-    username: '',
-    /** Event type slug on your Cal.com account; every account has "30min". */
+    /** Verified live: cal.com/holsera (the /khalifaholsera handle does not exist). */
+    username: 'holsera',
+    /** Event slug on the account; verified working at cal.com/holsera/30min. */
     event: '30min',
   },
 } as const;

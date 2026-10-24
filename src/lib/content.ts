@@ -943,9 +943,9 @@ export const earlyAccessExpectations: EarlyAccessExpectation[] = [
       'Some members will want to shape the product; others just want to know when it ships. Both are fine. Nothing you say is used as a testimonial or case study without asking you first.',
   },
   {
-    title: 'Your details are not stored yet',
+    title: 'How the signup handles your address',
     text:
-      'This site has no backend, so the form below does not transmit or store anything. When a real endpoint is authorised, it will be stated clearly before any data is collected.',
+      'The signup form on this page submits only your email address to Buttondown, our mailing-list processor, which sends the confirmation and any future Holsera updates. Double opt-in means you are not added until you confirm by email, and every email carries an unsubscribe link. Nothing beyond the address is collected — no name, financial, or identity details.',
   },
 ];
 
